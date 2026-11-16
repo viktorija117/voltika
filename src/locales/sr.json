@@ -43,6 +43,31 @@
     "success": "Hvala! Prijava je zabeležena (demo, ništa nije poslato).",
     "invalidEmail": "Unesite ispravnu email adresu, npr. ime{'@'}primer.rs"
   },
+  "product": {
+    "rating": "Ocena {rating} od 5",
+    "reviews": "nema recenzija | {n} recenzija | {n} recenzije | {n} recenzija",
+    "oldPrice": "Stara cena",
+    "salePrice": "Akcijska cena",
+    "savings": "Ušteda {amount}",
+    "discount": "-{percent}%",
+    "noImage": "Slika nije dostupna",
+    "stock": {
+      "inStock": "Na stanju",
+      "lowStock": "Poslednji komadi",
+      "outOfStock": "Nema na stanju"
+    }
+  },
+  "productList": {
+    "count": "nema proizvoda | {n} proizvod | {n} proizvoda | {n} proizvoda",
+    "searchTitle": "Rezultati za „{term}“",
+    "loading": "Učitavanje proizvoda…",
+    "emptyTitle": "Nema proizvoda",
+    "emptyDescription": "Probaj drugi pojam za pretragu ili pogledaj sve proizvode.",
+    "showAll": "Pogledaj sve proizvode",
+    "errorTitle": "Proizvodi se nisu učitali",
+    "errorDescription": "Proveri internet vezu i pokušaj ponovo.",
+    "retry": "Pokušaj ponovo"
+  },
   "categories": {
     "smartphones": "Telefoni",
     "laptops": "Laptopovi",

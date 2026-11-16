@@ -43,6 +43,31 @@
     "success": "Thank you! Your sign-up is saved (demo, nothing was sent).",
     "invalidEmail": "Enter a valid email address, e.g. name{'@'}example.com"
   },
+  "product": {
+    "rating": "Rated {rating} out of 5",
+    "reviews": "no reviews | {n} review | {n} reviews",
+    "oldPrice": "Old price",
+    "salePrice": "Sale price",
+    "savings": "You save {amount}",
+    "discount": "-{percent}%",
+    "noImage": "Image not available",
+    "stock": {
+      "inStock": "In stock",
+      "lowStock": "Last items",
+      "outOfStock": "Out of stock"
+    }
+  },
+  "productList": {
+    "count": "no products | {n} product | {n} products",
+    "searchTitle": "Results for \"{term}\"",
+    "loading": "Loading products…",
+    "emptyTitle": "No products",
+    "emptyDescription": "Try another search term or browse all products.",
+    "showAll": "Browse all products",
+    "errorTitle": "Products could not be loaded",
+    "errorDescription": "Check your internet connection and try again.",
+    "retry": "Try again"
+  },
   "categories": {
     "smartphones": "Phones",
     "laptops": "Laptops",
