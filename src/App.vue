@@ -1,10 +1,13 @@
 <script setup>
 import { RouterView } from 'vue-router'
+
+import AppHeader from '@/components/layout/AppHeader.vue'
 </script>
 
 <template>
-  <!-- Page container: 1200px content, 16px side gutter on small screens. -->
-  <main id="main-content" class="mx-auto max-w-page px-4 py-8">
+  <AppHeader />
+  <!-- tabindex="-1" lets the skip link move focus here; no ring around the whole page. -->
+  <main id="main-content" tabindex="-1" class="page-container py-8 focus:outline-none">
     <RouterView />
   </main>
 </template>
