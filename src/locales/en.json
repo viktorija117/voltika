@@ -1,7 +1,27 @@
 {
   "app": {
     "name": "Voltika",
-    "demoNotice": "Demo shop · orders are not real"
+    "demoNotice": "Demo shop · orders are not real",
+    "homeLink": "Voltika – home"
+  },
+  "header": {
+    "skipToContent": "Skip to content",
+    "supportHours": "Weekdays 8am–8pm, Saturday 9am–3pm",
+    "supportPhoneLabel": "Customer support",
+    "searchLabel": "Search products",
+    "searchPlaceholder": "Search products, e.g. \"headphones\"",
+    "searchSubmit": "Search",
+    "cart": "Cart",
+    "mainNav": "Main navigation",
+    "allProducts": "All products",
+    "deals": "Deals of the week"
+  },
+  "categories": {
+    "smartphones": "Phones",
+    "laptops": "Laptops",
+    "tablets": "Tablets",
+    "accessories": "Accessories",
+    "watches": "Watches"
   },
   "pages": {
     "home": {

@@ -1,7 +1,27 @@
 {
   "app": {
     "name": "Voltika",
-    "demoNotice": "Demo prodavnica · porudžbine nisu prave"
+    "demoNotice": "Demo prodavnica · porudžbine nisu prave",
+    "homeLink": "Voltika – početna"
+  },
+  "header": {
+    "skipToContent": "Preskoči na sadržaj",
+    "supportHours": "Radnim danima 8–20h, subotom 9–15h",
+    "supportPhoneLabel": "Korisnička podrška",
+    "searchLabel": "Pretraga proizvoda",
+    "searchPlaceholder": "Pretražite proizvode, npr. „slušalice“",
+    "searchSubmit": "Traži",
+    "cart": "Korpa",
+    "mainNav": "Glavna navigacija",
+    "allProducts": "Svi proizvodi",
+    "deals": "Akcije nedelje"
+  },
+  "categories": {
+    "smartphones": "Telefoni",
+    "laptops": "Laptopovi",
+    "tablets": "Tableti",
+    "accessories": "Oprema",
+    "watches": "Satovi"
   },
   "pages": {
     "home": {

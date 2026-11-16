@@ -1,24 +1,22 @@
-import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import { h } from 'vue'
-import { createMemoryHistory, createRouter } from 'vue-router'
+
+import { mountWithApp } from '@/__tests__/helpers'
 
 import App from '@/App.vue'
 
-// Render function instead of a template string: the app uses the runtime-only Vue build.
-const HomeStub = { render: () => h('p', 'Home') }
-
 describe('App', () => {
-  it('renders the component of the current route', async () => {
-    const router = createRouter({
-      history: createMemoryHistory(),
-      routes: [{ path: '/', component: HomeStub }],
-    })
-    router.push('/')
-    await router.isReady()
+  it('renders the header and the page of the current route', async () => {
+    const { wrapper, router } = mountWithApp(App)
+    await router.push('/korpa')
 
-    const wrapper = mount(App, { global: { plugins: [router] } })
+    expect(wrapper.find('header').exists()).toBe(true)
+    expect(wrapper.get('main').text()).toBe('cart')
+  })
 
-    expect(wrapper.text()).toContain('Home')
+  it('has a skip link that targets the main content', () => {
+    const { wrapper } = mountWithApp(App)
+
+    expect(wrapper.get('a[href="#main-content"]').text()).toBe('Preskoči na sadržaj')
+    expect(wrapper.get('main').attributes('id')).toBe('main-content')
   })
 })
