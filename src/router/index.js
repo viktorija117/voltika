@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import { QUERY_KEYS } from '@/config/catalog'
+
 // Every view is lazy-loaded, so each page becomes its own JS chunk.
 export const routes = [
   { path: '/', name: 'home', component: () => import('@/views/HomeView.vue') },
@@ -15,12 +17,17 @@ export const routes = [
 ]
 
 /**
- * Restores the scroll position on back/forward, jumps to #anchors,
- * and otherwise starts every new page at the top.
+ * Restores the scroll position on back/forward and jumps to #anchors.
+ * On the same page, a filter change keeps the position (no jump while ticking checkboxes)
+ * and only a new result page scrolls to the top. A new page always starts at the top.
  */
-export function scrollBehavior(to, _from, savedPosition) {
+export function scrollBehavior(to, from, savedPosition) {
   if (savedPosition) return savedPosition
   if (to.hash) return { el: to.hash }
+  if (to.path === from.path) {
+    const pageChanged = to.query[QUERY_KEYS.page] !== from.query[QUERY_KEYS.page]
+    return pageChanged ? { top: 0 } : false
+  }
   return { top: 0 }
 }
 

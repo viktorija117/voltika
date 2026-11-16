@@ -66,7 +66,45 @@
     "showAll": "Browse all products",
     "errorTitle": "Products could not be loaded",
     "errorDescription": "Check your internet connection and try again.",
-    "retry": "Try again"
+    "retry": "Try again",
+    "showing": "Showing {from}–{to} of {total}"
+  },
+  "filters": {
+    "title": "Filters",
+    "open": "Filters",
+    "openWithCount": "Filters ({count})",
+    "close": "Close filters",
+    "price": "Price (RSD)",
+    "priceFrom": "From",
+    "priceTo": "To",
+    "brand": "Brand",
+    "showMoreBrands": "Show more ({count})",
+    "showFewerBrands": "Show less",
+    "rating": "Rating",
+    "anyRating": "Any rating",
+    "ratingAtLeast": "{rating} and up",
+    "availability": "Availability",
+    "inStockOnly": "In stock only",
+    "active": "Active filters",
+    "clearAll": "Clear all",
+    "remove": "Remove filter: {label}",
+    "chipFrom": "From {price}",
+    "chipTo": "Up to {price}",
+    "chipRating": "Rating {rating}+",
+    "showResults": "Show products ({count})"
+  },
+  "sort": {
+    "label": "Sort by",
+    "popular": "Top rated",
+    "priceAsc": "Price: low to high",
+    "priceDesc": "Price: high to low",
+    "discount": "Biggest discount"
+  },
+  "pagination": {
+    "label": "Result pages",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page {page}"
   },
   "categories": {
     "smartphones": "Phones",
