@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './fonts.css';
 
 /*
  * Design tokens, mirrored 1:1 from Figma Variables ("Voltika – Design").
