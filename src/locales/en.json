@@ -69,6 +69,12 @@
     "retry": "Try again",
     "showing": "Showing {from}–{to} of {total}"
   },
+  "search": {
+    "suggestionsLabel": "Search suggestions",
+    "suggestionCount": "no suggestions | {n} suggestion | {n} suggestions",
+    "noResults": "No products for \"{term}\"",
+    "showAll": "Show all results for \"{term}\""
+  },
   "filters": {
     "title": "Filters",
     "open": "Filters",

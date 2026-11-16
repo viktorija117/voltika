@@ -69,6 +69,12 @@
     "retry": "Pokušaj ponovo",
     "showing": "Prikazano {from}–{to} od {total}"
   },
+  "search": {
+    "suggestionsLabel": "Predlozi pretrage",
+    "suggestionCount": "nema predloga | {n} predlog | {n} predloga | {n} predloga",
+    "noResults": "Nema proizvoda za „{term}“",
+    "showAll": "Prikaži sve rezultate za „{term}“"
+  },
   "filters": {
     "title": "Filteri",
     "open": "Filteri",
