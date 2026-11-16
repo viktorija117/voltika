@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
-import { QUERY_KEYS } from '@/config/catalog'
+import { productListRoute } from '@/utils/routes'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -14,7 +14,7 @@ const query = ref('')
 function handleSubmit() {
   const term = query.value.trim()
   if (!term) return
-  router.push({ name: 'products', query: { [QUERY_KEYS.search]: term } })
+  router.push(productListRoute({ search: term }))
 }
 </script>
 

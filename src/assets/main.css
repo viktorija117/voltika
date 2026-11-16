@@ -144,6 +144,11 @@
     color: var(--color-text-default);
   }
 
+  /* While a modal dialog (mobile menu) is open, the page behind it must not scroll. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
   /* Same indicator as the Figma Focus variants: 2px brand outline, 2px offset. */
   :focus-visible {
     outline: 2px solid var(--color-border-focus);

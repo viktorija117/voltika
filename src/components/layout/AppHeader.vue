@@ -1,5 +1,6 @@
 <script setup>
-import { ShoppingCart } from 'lucide-vue-next'
+import { Menu, ShoppingCart } from 'lucide-vue-next'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 
@@ -7,8 +8,10 @@ import AppLogo from '@/components/layout/AppLogo.vue'
 import AppTopBar from '@/components/layout/AppTopBar.vue'
 import HeaderNav from '@/components/layout/HeaderNav.vue'
 import HeaderSearch from '@/components/layout/HeaderSearch.vue'
+import MobileDrawer from '@/components/layout/MobileDrawer.vue'
 
 const { t } = useI18n()
+const isMenuOpen = ref(false)
 </script>
 
 <template>
@@ -22,10 +25,20 @@ const { t } = useI18n()
 
     <AppTopBar />
 
-    <!-- Mobile: logo and cart in one row, search below. Desktop: one row. -->
+    <!-- Mobile: menu, logo and cart in one row, search below. Desktop: one row, no menu button. -->
     <div
-      class="page-container flex flex-wrap items-center gap-x-4 gap-y-2 py-3 lg:flex-nowrap lg:gap-8 lg:py-4"
+      class="page-container flex flex-wrap items-center gap-x-2 gap-y-2 py-3 lg:flex-nowrap lg:gap-8 lg:py-4"
     >
+      <button
+        type="button"
+        :aria-label="t('header.openMenu')"
+        :aria-expanded="isMenuOpen"
+        aria-controls="mobile-menu"
+        class="-ml-2 flex size-11 items-center justify-center rounded-md hover:bg-bg-subtle lg:hidden"
+        @click="isMenuOpen = true"
+      >
+        <Menu :size="24" aria-hidden="true" />
+      </button>
       <AppLogo />
       <div class="order-last w-full lg:order-none lg:flex-1">
         <HeaderSearch />
@@ -40,5 +53,6 @@ const { t } = useI18n()
     </div>
 
     <HeaderNav />
+    <MobileDrawer id="mobile-menu" :open="isMenuOpen" @close="isMenuOpen = false" />
   </header>
 </template>
