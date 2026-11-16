@@ -12,6 +12,9 @@
     "searchPlaceholder": "Search products, e.g. \"headphones\"",
     "searchSubmit": "Search",
     "cart": "Cart",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menuTitle": "Menu",
     "mainNav": "Main navigation",
     "allProducts": "All products",
     "deals": "Deals of the week"
