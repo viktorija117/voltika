@@ -12,6 +12,9 @@ export const PRICE_FILTER_DEBOUNCE_MS = 500
 /** Shortest query that triggers search suggestions. */
 export const SEARCH_MIN_QUERY_LENGTH = 2
 
+/** Most products shown in the search suggestions under the header search. */
+export const SEARCH_SUGGESTION_LIMIT = 6
+
 /** At or below this stock a product shows "Poslednji komadi" (last items). */
 export const LOW_STOCK_THRESHOLD = 5
 
