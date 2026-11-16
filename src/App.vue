@@ -1,6 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router'
 
+import AppFooter from '@/components/layout/AppFooter.vue'
 import AppHeader from '@/components/layout/AppHeader.vue'
 </script>
 
@@ -10,4 +11,5 @@ import AppHeader from '@/components/layout/AppHeader.vue'
   <main id="main-content" tabindex="-1" class="page-container py-8 focus:outline-none">
     <RouterView />
   </main>
+  <AppFooter />
 </template>

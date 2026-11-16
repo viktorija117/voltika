@@ -19,6 +19,30 @@
     "allProducts": "All products",
     "deals": "Deals of the week"
   },
+  "footer": {
+    "description": "A demo electronics shop, built as a portfolio project.",
+    "categoriesTitle": "Categories",
+    "supportTitle": "Customer support",
+    "projectTitle": "About the project",
+    "sourceCode": "Source code on GitHub",
+    "opensInNewTab": "(opens in a new tab)",
+    "copyright": "© {year} Voltika · Demo project, not a real shop",
+    "paymentMethods": "Payment methods",
+    "payments": {
+      "visa": "Visa",
+      "mastercard": "Mastercard",
+      "dinacard": "DinaCard",
+      "cashOnDelivery": "Cash on delivery"
+    }
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "description": "Deals and new products, once a week.",
+    "emailLabel": "Email address",
+    "submit": "Subscribe",
+    "success": "Thank you! Your sign-up is saved (demo, nothing was sent).",
+    "invalidEmail": "Enter a valid email address, e.g. name{'@'}example.com"
+  },
   "categories": {
     "smartphones": "Phones",
     "laptops": "Laptops",
