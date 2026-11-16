@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { formatPrice, usdToRsd } from '@/utils/price'
+import { formatPrice, installmentAmount, usdToRsd } from '@/utils/price'
 
 const NBSP = ' '
 
@@ -26,5 +26,16 @@ describe('usdToRsd', () => {
 
   it('never returns a negative price', () => {
     expect(usdToRsd(0)).toBe(0)
+  })
+})
+
+describe('installmentAmount', () => {
+  it('splits the price evenly', () => {
+    expect(installmentAmount(24000, 24)).toBe(1000)
+  })
+
+  it('rounds up, so the installments cover the whole price', () => {
+    expect(installmentAmount(24999, 24)).toBe(1042)
+    expect(installmentAmount(24999, 24) * 24).toBeGreaterThanOrEqual(24999)
   })
 })

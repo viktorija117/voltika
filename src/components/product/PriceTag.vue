@@ -10,6 +10,12 @@ const props = defineProps({
   /** Price before the sale; null when the product is not on sale. */
   oldPrice: { type: Number, default: null },
   savings: { type: Number, default: 0 },
+  /** `large` on the product page, `default` on cards. */
+  size: {
+    type: String,
+    default: 'default',
+    validator: (value) => ['default', 'large'].includes(value),
+  },
 })
 
 const { t } = useI18n()
@@ -22,7 +28,8 @@ const isOnSale = computed(() => props.oldPrice !== null && props.oldPrice > prop
       <span v-if="isOnSale" class="sr-only">{{ t('product.salePrice') }}:</span>
       <span
         :class="[
-          'font-heading text-xl font-bold',
+          'font-heading font-bold',
+          size === 'large' ? 'text-3xl' : 'text-xl',
           isOnSale ? 'text-text-sale' : 'text-text-default',
         ]"
       >

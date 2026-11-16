@@ -55,7 +55,42 @@
       "inStock": "In stock",
       "lowStock": "Last items",
       "outOfStock": "Out of stock"
-    }
+    },
+    "sku": "SKU: {sku}",
+    "installments": "or {count} × {amount} in interest-free installments",
+    "gallery": "Product images",
+    "imageOf": "Image {current} of {total}",
+    "zoom": "Zoom image",
+    "closeZoom": "Close zoomed image",
+    "service": {
+      "shipping": "Delivery",
+      "warranty": "Warranty",
+      "returns": "Returns"
+    },
+    "tabs": {
+      "label": "Product details",
+      "description": "Description",
+      "specs": "Specifications",
+      "reviews": "Reviews ({count})"
+    },
+    "specs": {
+      "brand": "Brand",
+      "sku": "SKU",
+      "category": "Category",
+      "warranty": "Warranty",
+      "shipping": "Delivery",
+      "returnPolicy": "Returns"
+    },
+    "noReviews": "This product has no reviews yet.",
+    "similar": "Similar products",
+    "notFoundTitle": "Product not found",
+    "notFoundDescription": "The product does not exist or is no longer available.",
+    "errorTitle": "The product could not be loaded",
+    "loading": "Loading product…"
+  },
+  "breadcrumbs": {
+    "label": "Breadcrumb",
+    "home": "Home"
   },
   "productList": {
     "count": "no products | {n} product | {n} products",

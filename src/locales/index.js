@@ -20,6 +20,11 @@ const i18n = createI18n({
     sr: { rating: { minimumFractionDigits: 1, maximumFractionDigits: 1 } },
     en: { rating: { minimumFractionDigits: 1, maximumFractionDigits: 1 } },
   },
+  // d(date, 'review') -> "30. april 2025." in Serbian, "April 30, 2025" in English.
+  datetimeFormats: {
+    sr: { review: { dateStyle: 'long' } },
+    en: { review: { dateStyle: 'long' } },
+  },
 })
 
 export default i18n

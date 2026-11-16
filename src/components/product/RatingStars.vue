@@ -6,8 +6,8 @@ import { useI18n } from 'vue-i18n'
 const props = defineProps({
   /** Average rating, 0–5. */
   rating: { type: Number, required: true },
-  /** Number of reviews. */
-  count: { type: Number, default: 0 },
+  /** Number of reviews; null hides it (a single review shows only its stars). */
+  count: { type: Number, default: null },
 })
 
 const { t, n } = useI18n()
@@ -23,6 +23,11 @@ const stars = computed(() => {
 })
 
 const formattedRating = computed(() => n(props.rating, 'rating'))
+const hasCount = computed(() => props.count !== null)
+const accessibleLabel = computed(() => {
+  const ratingText = t('product.rating', { rating: formattedRating.value })
+  return hasCount.value ? `${ratingText}, ${t('product.reviews', props.count)}` : ratingText
+})
 </script>
 
 <template>
@@ -43,9 +48,7 @@ const formattedRating = computed(() => n(props.rating, 'rating'))
       </span>
     </span>
     <span class="text-sm font-medium" aria-hidden="true">{{ formattedRating }}</span>
-    <span class="text-xs text-text-muted" aria-hidden="true">({{ count }})</span>
-    <span class="sr-only">
-      {{ t('product.rating', { rating: formattedRating }) }}, {{ t('product.reviews', count) }}
-    </span>
+    <span v-if="hasCount" class="text-xs text-text-muted" aria-hidden="true">({{ count }})</span>
+    <span class="sr-only">{{ accessibleLabel }}</span>
   </div>
 </template>

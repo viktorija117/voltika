@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
 import { makeProduct } from '@/__tests__/helpers'
-import { countBrands, filterProducts, sortProducts } from '@/utils/productFilters'
+import {
+  countBrands,
+  filterProducts,
+  findSimilarProducts,
+  sortProducts,
+} from '@/utils/productFilters'
 
 const PRODUCTS = [
   makeProduct({
@@ -96,5 +101,29 @@ describe('countBrands', () => {
       { brand: 'Apple', count: 2 },
       { brand: 'Beats', count: 1 },
     ])
+  })
+})
+
+describe('findSimilarProducts', () => {
+  const current = makeProduct({ id: 1, category: 'laptops' })
+  const catalog = [
+    current,
+    makeProduct({ id: 2, category: 'laptops', rating: 3 }),
+    makeProduct({ id: 3, category: 'tablets', rating: 5 }),
+    makeProduct({ id: 4, category: 'laptops', rating: 4.8 }),
+    makeProduct({ id: 5, category: 'laptops', rating: 4 }),
+  ]
+
+  it('returns other products from the same category, best rated first', () => {
+    const ids = findSimilarProducts(catalog, current, 4).map((product) => product.id)
+    expect(ids).toEqual([4, 5, 2])
+  })
+
+  it('stops at the requested count', () => {
+    expect(findSimilarProducts(catalog, current, 2)).toHaveLength(2)
+  })
+
+  it('returns nothing while the catalog is empty', () => {
+    expect(findSimilarProducts([], current, 4)).toEqual([])
   })
 })

@@ -5,8 +5,8 @@ import { useI18n } from 'vue-i18n'
 
 import { useProductFilters } from '@/composables/useProductFilters'
 import { useProductListing } from '@/composables/useProductListing'
-import { NAV_CATEGORIES } from '@/config/catalog'
 import { useCatalogStore } from '@/stores/catalog'
+import { categoryLabelKey } from '@/utils/categories'
 import { buildFilterQuery } from '@/utils/filterQuery'
 import { productListRoute } from '@/utils/routes'
 
@@ -40,8 +40,8 @@ const isPending = computed(() => catalog.status === 'idle' || catalog.isLoading)
 const title = computed(() => {
   const { search, category } = filters.value
   if (search) return t('productList.searchTitle', { term: search })
-  const categoryEntry = NAV_CATEGORIES.find(({ slug }) => slug === category)
-  return categoryEntry ? t(categoryEntry.labelKey) : t('pages.products.title')
+  const labelKey = categoryLabelKey(category)
+  return labelKey ? t(labelKey) : t('pages.products.title')
 })
 
 const showingText = computed(() => {

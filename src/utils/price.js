@@ -26,3 +26,13 @@ export function usdToRsd(usd) {
   const rsd = usd * USD_TO_RSD_RATE
   return Math.max(Math.round(rsd / RETAIL_PRICE_STEP) * RETAIL_PRICE_STEP - 1, 0)
 }
+
+/**
+ * Monthly installment, rounded up so the installments never add up to less than the price.
+ * @param {number} price Whole dinars.
+ * @param {number} count Number of installments.
+ * @returns {number}
+ */
+export function installmentAmount(price, count) {
+  return Math.ceil(price / count)
+}

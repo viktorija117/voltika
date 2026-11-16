@@ -1,6 +1,6 @@
 import { NAV_CATEGORIES } from '@/config/catalog'
 import { fetchJson } from '@/services/apiClient'
-import { toProduct } from '@/services/productMapper'
+import { toProduct, toProductDetails } from '@/services/productMapper'
 
 // Only the fields the shop uses, to keep responses small.
 const PRODUCT_FIELDS = [
@@ -16,6 +16,14 @@ const PRODUCT_FIELDS = [
   'thumbnail',
   'images',
   'reviews',
+].join(',')
+
+// The product page also shows delivery, warranty and returns.
+const DETAIL_FIELDS = [
+  PRODUCT_FIELDS,
+  'warrantyInformation',
+  'shippingInformation',
+  'returnPolicy',
 ].join(',')
 
 /**
@@ -34,15 +42,15 @@ export async function getCatalog({ signal } = {}) {
 }
 
 /**
- * Loads one product by id.
+ * Loads one product with everything the product page shows.
  * @param {number | string} id
  * @param {{ signal?: AbortSignal }} [options]
- * @returns {Promise<import('@/services/productMapper').Product>}
+ * @returns {Promise<import('@/services/productMapper').ProductDetails>}
  * @throws {import('@/services/apiClient').ApiError} With status 404 when the product does not exist.
  */
 export async function getProduct(id, { signal } = {}) {
-  const raw = await fetchJson(`/products/${encodeURIComponent(id)}?select=${PRODUCT_FIELDS}`, {
+  const raw = await fetchJson(`/products/${encodeURIComponent(id)}?select=${DETAIL_FIELDS}`, {
     signal,
   })
-  return toProduct(raw)
+  return toProductDetails(raw)
 }

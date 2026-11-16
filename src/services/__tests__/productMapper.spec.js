@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { LOW_STOCK_THRESHOLD } from '@/config/catalog'
 import { MIN_SALE_DISCOUNT_PERCENT } from '@/config/pricing'
-import { toProduct, toStockStatus } from '@/services/productMapper'
+import { toProduct, toProductDetails, toStockStatus } from '@/services/productMapper'
 import { usdToRsd } from '@/utils/price'
 
 const RAW = {
@@ -79,5 +79,49 @@ describe('toStockStatus', () => {
     [LOW_STOCK_THRESHOLD + 1, 'inStock'],
   ])('stock %d is %s', (stock, status) => {
     expect(toStockStatus(stock)).toBe(status)
+  })
+})
+
+describe('toProductDetails', () => {
+  it('adds service info and maps the reviews', () => {
+    const details = toProductDetails({
+      id: 1,
+      title: 'Slušalice',
+      price: 100,
+      warrantyInformation: '1 year warranty',
+      shippingInformation: 'Ships in 2 days',
+      returnPolicy: '30 days return policy',
+      reviews: [
+        {
+          rating: 5,
+          comment: 'Odlično!',
+          reviewerName: 'Ana',
+          reviewerEmail: 'ana@example.com',
+          date: '2025-04-30T09:41:02.053Z',
+        },
+      ],
+    })
+
+    expect(details).toMatchObject({
+      id: 1,
+      name: 'Slušalice',
+      warranty: '1 year warranty',
+      shipping: 'Ships in 2 days',
+      returnPolicy: '30 days return policy',
+      reviewCount: 1,
+    })
+    // The reviewer's email is not needed, so it is not kept.
+    expect(details.reviews).toEqual([
+      { rating: 5, comment: 'Odlično!', author: 'Ana', date: '2025-04-30T09:41:02.053Z' },
+    ])
+  })
+
+  it('falls back to empty values when the API leaves fields out', () => {
+    expect(toProductDetails({ id: 2 })).toMatchObject({
+      warranty: '',
+      shipping: '',
+      returnPolicy: '',
+      reviews: [],
+    })
   })
 })

@@ -55,7 +55,42 @@
       "inStock": "Na stanju",
       "lowStock": "Poslednji komadi",
       "outOfStock": "Nema na stanju"
-    }
+    },
+    "sku": "Šifra: {sku}",
+    "installments": "ili {count} × {amount} na rate bez kamate",
+    "gallery": "Slike proizvoda",
+    "imageOf": "Slika {current} od {total}",
+    "zoom": "Uvećaj sliku",
+    "closeZoom": "Zatvori uvećanu sliku",
+    "service": {
+      "shipping": "Dostava",
+      "warranty": "Garancija",
+      "returns": "Povraćaj"
+    },
+    "tabs": {
+      "label": "Detalji proizvoda",
+      "description": "Opis",
+      "specs": "Specifikacije",
+      "reviews": "Recenzije ({count})"
+    },
+    "specs": {
+      "brand": "Brend",
+      "sku": "Šifra",
+      "category": "Kategorija",
+      "warranty": "Garancija",
+      "shipping": "Dostava",
+      "returnPolicy": "Povraćaj"
+    },
+    "noReviews": "Proizvod još nema recenzija.",
+    "similar": "Slični proizvodi",
+    "notFoundTitle": "Proizvod nije pronađen",
+    "notFoundDescription": "Proizvod ne postoji ili više nije u ponudi.",
+    "errorTitle": "Proizvod se nije učitao",
+    "loading": "Učitavanje proizvoda…"
+  },
+  "breadcrumbs": {
+    "label": "Putanja",
+    "home": "Početna"
   },
   "productList": {
     "count": "nema proizvoda | {n} proizvod | {n} proizvoda | {n} proizvoda",

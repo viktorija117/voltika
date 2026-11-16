@@ -68,3 +68,44 @@ export function toProduct(raw) {
     images: Array.isArray(raw.images) ? raw.images : [],
   }
 }
+
+/**
+ * @typedef {object} Review
+ * @property {number} rating 1–5.
+ * @property {string} comment
+ * @property {string} author
+ * @property {string} date ISO date.
+ */
+
+/**
+ * @typedef {Product & {
+ *   warranty: string,
+ *   shipping: string,
+ *   returnPolicy: string,
+ *   reviews: Review[],
+ * }} ProductDetails
+ */
+
+function toReview(raw) {
+  return {
+    rating: Number(raw.rating) || 0,
+    comment: raw.comment ?? '',
+    author: raw.reviewerName ?? '',
+    date: raw.date ?? '',
+  }
+}
+
+/**
+ * The product page needs more than a card: service info and the reviews themselves.
+ * @param {object} raw Product as returned by DummyJSON.
+ * @returns {ProductDetails}
+ */
+export function toProductDetails(raw) {
+  return {
+    ...toProduct(raw),
+    warranty: raw.warrantyInformation ?? '',
+    shipping: raw.shippingInformation ?? '',
+    returnPolicy: raw.returnPolicy ?? '',
+    reviews: Array.isArray(raw.reviews) ? raw.reviews.map(toReview) : [],
+  }
+}
