@@ -1,0 +1,130 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens, mirrored 1:1 from Figma Variables ("Voltika – Design").
+ * Figma `color/primary/600` -> `--color-primary-600`, `text/default` -> `--color-text-default`.
+ * Default Tailwind scales are reset (`initial`), so only design-system values can be used.
+ */
+@theme {
+  /* ---------- Primitives (never used directly in components) ---------- */
+  --color-*: initial;
+  --color-primary-50: #eef0ff;
+  --color-primary-100: #e0e3ff;
+  --color-primary-600: #3b3fe6;
+  --color-primary-700: #2e2fb8;
+  --color-accent-300: #d8f86e;
+  --color-accent-400: #c6f432;
+  --color-accent-500: #a8d600;
+  --color-sale-50: #fff0f3;
+  --color-sale-600: #d9184b;
+  --color-sale-700: #b0103b;
+  --color-success-50: #edfaf2;
+  --color-success-600: #16834a;
+  --color-success-700: #116a3b;
+  --color-error-50: #fef1f0;
+  --color-error-600: #d92d20;
+  --color-error-700: #b42318;
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f6f7fb;
+  --color-neutral-100: #eceef4;
+  --color-neutral-200: #dde0e9;
+  --color-neutral-300: #c9cdd9;
+  --color-neutral-400: #8c92a4;
+  --color-neutral-500: #5e6476;
+  --color-neutral-700: #3a3f4e;
+  --color-neutral-900: #0f1222;
+
+  /* ---------- Semantic colors (use these in components) ---------- */
+  --color-text-default: var(--color-neutral-900);
+  --color-text-muted: var(--color-neutral-500);
+  --color-text-inverse: var(--color-neutral-0);
+  --color-text-on-accent: var(--color-neutral-900);
+  --color-text-brand: var(--color-primary-600);
+  --color-text-sale: var(--color-sale-600);
+  --color-text-success: var(--color-success-700);
+  --color-text-error: var(--color-error-700);
+  --color-text-disabled: var(--color-neutral-400);
+
+  --color-bg-page: var(--color-neutral-50);
+  --color-bg-surface: var(--color-neutral-0);
+  --color-bg-subtle: var(--color-neutral-100);
+  --color-bg-inverse: var(--color-neutral-900);
+  --color-bg-brand: var(--color-primary-600);
+  --color-bg-brand-hover: var(--color-primary-700);
+  --color-bg-brand-subtle: var(--color-primary-50);
+  --color-bg-brand-subtle-hover: var(--color-primary-100);
+  --color-bg-accent: var(--color-accent-400);
+  --color-bg-accent-hover: var(--color-accent-500);
+  --color-bg-sale: var(--color-sale-600);
+  --color-bg-sale-subtle: var(--color-sale-50);
+  --color-bg-success-subtle: var(--color-success-50);
+  --color-bg-error-subtle: var(--color-error-50);
+
+  --color-border-subtle: var(--color-neutral-200);
+  --color-border-input: var(--color-neutral-400);
+  --color-border-focus: var(--color-primary-600);
+  --color-border-error: var(--color-error-600);
+
+  /* ---------- Typography ---------- */
+  --font-*: initial;
+  --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --default-font-family: var(--font-body);
+
+  /* Scale 1.25, base 16px. Names match Figma `font-size/*` and `line-height/*`. */
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 2rem;
+  --text-2xl--line-height: 2.5rem;
+  --text-3xl: 2.5rem;
+  --text-3xl--line-height: 3rem;
+  --text-4xl: 3rem;
+  --text-4xl--line-height: 3.5rem;
+
+  --font-weight-*: initial;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ---------- Spacing ---------- */
+  /* 4px base, so Figma `space/4` (16px) is `p-4`, `space/6` (24px) is `gap-6`. */
+  --spacing: 0.25rem;
+
+  /* ---------- Radius and shadows ---------- */
+  --radius-*: initial;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+
+  --shadow-*: initial;
+  --shadow-sm: 0 1px 3px rgb(15 18 34 / 0.08);
+  --shadow-lg: 0 12px 32px rgb(15 18 34 / 0.14);
+
+  /* ---------- Layout ---------- */
+  /* Page content width from the Figma grid (1440 frame, 120px gutters). */
+  --container-page: 75rem;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-page);
+    color: var(--color-text-default);
+  }
+
+  /* Same indicator as the Figma Focus variants: 2px brand outline, 2px offset. */
+  :focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+}
