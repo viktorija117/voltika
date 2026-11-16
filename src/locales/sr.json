@@ -19,6 +19,30 @@
     "allProducts": "Svi proizvodi",
     "deals": "Akcije nedelje"
   },
+  "footer": {
+    "description": "Demo prodavnica tehnike, napravljena kao portfolio projekat.",
+    "categoriesTitle": "Kategorije",
+    "supportTitle": "Korisnička podrška",
+    "projectTitle": "O projektu",
+    "sourceCode": "Izvorni kod na GitHub-u",
+    "opensInNewTab": "(otvara se u novom tabu)",
+    "copyright": "© {year} Voltika · Demo projekat, nije prava prodavnica",
+    "paymentMethods": "Načini plaćanja",
+    "payments": {
+      "visa": "Visa",
+      "mastercard": "Mastercard",
+      "dinacard": "DinaCard",
+      "cashOnDelivery": "Pouzećem"
+    }
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "description": "Akcije i novi proizvodi, jednom nedeljno.",
+    "emailLabel": "Email adresa",
+    "submit": "Prijavi se",
+    "success": "Hvala! Prijava je zabeležena (demo, ništa nije poslato).",
+    "invalidEmail": "Unesite ispravnu email adresu, npr. ime{'@'}primer.rs"
+  },
   "categories": {
     "smartphones": "Telefoni",
     "laptops": "Laptopovi",
