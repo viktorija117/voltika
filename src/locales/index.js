@@ -2,6 +2,7 @@ import { createI18n } from 'vue-i18n'
 
 import { DEFAULT_LOCALE } from '@/config/i18n'
 import en from '@/locales/en.json'
+import { serbianPlural } from '@/locales/pluralRules'
 import sr from '@/locales/sr.json'
 
 /**
@@ -13,6 +14,12 @@ const i18n = createI18n({
   locale: DEFAULT_LOCALE,
   fallbackLocale: DEFAULT_LOCALE,
   messages: { sr, en },
+  pluralRules: { sr: serbianPlural },
+  // n(4.5, 'rating') -> "4,5" in Serbian, "4.5" in English.
+  numberFormats: {
+    sr: { rating: { minimumFractionDigits: 1, maximumFractionDigits: 1 } },
+    en: { rating: { minimumFractionDigits: 1, maximumFractionDigits: 1 } },
+  },
 })
 
 export default i18n
