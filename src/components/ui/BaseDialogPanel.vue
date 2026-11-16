@@ -4,12 +4,14 @@ const POSITION_CLASSES = {
   left: 'm-0 h-dvh max-h-none w-80 max-w-[85vw] -translate-x-full open:translate-x-0 starting:open:-translate-x-full',
   bottom:
     'mx-0 mt-auto mb-0 max-h-[85dvh] w-full max-w-none translate-y-full rounded-t-lg open:translate-y-0 starting:open:translate-y-full',
+  center:
+    'm-auto max-h-[90dvh] w-[calc(100%-2rem)] max-w-4xl rounded-lg opacity-0 open:opacity-100 starting:open:opacity-0',
 }
 </script>
 
 <script setup>
 import { X } from 'lucide-vue-next'
-import { ref, useId, watch } from 'vue'
+import { onMounted, ref, useId, watch } from 'vue'
 
 const props = defineProps({
   open: { type: Boolean, default: false },
@@ -17,7 +19,7 @@ const props = defineProps({
   title: { type: String, required: true },
   /** Accessible name of the close button, e.g. "Zatvori meni". */
   closeLabel: { type: String, required: true },
-  /** Slides in from the left (menu) or up from the bottom (mobile filters). */
+  /** Slides in from the left (menu), up from the bottom (mobile filters) or fades in centered (image zoom). */
   position: {
     type: String,
     default: 'left',
@@ -30,14 +32,14 @@ const dialog = ref(null)
 const titleId = useId()
 
 // A modal <dialog> traps focus, closes on Escape and returns focus to the button that
-// opened it, so no focus-trap code is needed. The watcher only syncs the prop with the DOM.
-watch(
-  () => props.open,
-  (isOpen) => {
-    if (isOpen && !dialog.value.open) dialog.value.showModal()
-    if (!isOpen && dialog.value.open) dialog.value.close()
-  },
-)
+// opened it, so no focus-trap code is needed. This only syncs the prop with the DOM:
+// on mount too, for dialogs that are lazy-loaded and appear already open (image zoom).
+function syncOpenState() {
+  if (props.open && !dialog.value.open) dialog.value.showModal()
+  if (!props.open && dialog.value.open) dialog.value.close()
+}
+onMounted(syncOpenState)
+watch(() => props.open, syncOpenState)
 
 function close() {
   emit('close')
@@ -55,7 +57,7 @@ function handleClick(event) {
     :aria-labelledby="titleId"
     :class="[
       'bg-bg-surface p-0 text-text-default backdrop:bg-bg-inverse/50',
-      'transition-[translate,overlay,display] transition-discrete duration-200 motion-reduce:transition-none',
+      'transition-[translate,opacity,overlay,display] transition-discrete duration-200 motion-reduce:transition-none',
       POSITION_CLASSES[position],
     ]"
     @close="close"

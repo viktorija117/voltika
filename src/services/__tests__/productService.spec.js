@@ -51,6 +51,18 @@ describe('getProduct', () => {
     await expect(getProduct(7)).resolves.toMatchObject({ id: 7, name: 'Laptop' })
   })
 
+  it('asks for the service info the product page shows', async () => {
+    const fetchMock = vi.fn(async () => jsonResponse({ id: 7, title: 'Laptop', price: 10 }))
+    vi.stubGlobal('fetch', fetchMock)
+
+    await getProduct(7)
+
+    const url = fetchMock.mock.calls[0][0]
+    expect(url).toContain('warrantyInformation')
+    expect(url).toContain('shippingInformation')
+    expect(url).toContain('returnPolicy')
+  })
+
   it('throws an ApiError with status 404 for an unknown product', async () => {
     vi.stubGlobal(
       'fetch',

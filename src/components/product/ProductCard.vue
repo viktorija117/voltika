@@ -1,21 +1,16 @@
 <script setup>
-import { CircleAlert, CircleCheck, ImageOff } from 'lucide-vue-next'
+import { ImageOff } from 'lucide-vue-next'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 
 import PriceTag from '@/components/product/PriceTag.vue'
 import RatingStars from '@/components/product/RatingStars.vue'
+import StockStatus from '@/components/product/StockStatus.vue'
 import BaseBadge from '@/components/ui/BaseBadge.vue'
 
 // Thumbnails from the API are 300x300; fixed size avoids layout shift while they load.
 const IMAGE_SIZE = 300
-
-const STOCK_STYLES = {
-  inStock: { icon: CircleCheck, class: 'text-text-success' },
-  lowStock: { icon: CircleAlert, class: 'text-text-sale' },
-  outOfStock: { icon: null, class: 'text-text-muted' },
-}
 
 const props = defineProps({
   /** @type {import('vue').PropType<import('@/services/productMapper').Product>} */
@@ -23,7 +18,6 @@ const props = defineProps({
 })
 
 const { t } = useI18n()
-const stockStyle = computed(() => STOCK_STYLES[props.product.stockStatus])
 const productRoute = computed(() => ({ name: 'product', params: { id: props.product.id } }))
 </script>
 
@@ -71,10 +65,7 @@ const productRoute = computed(() => ({ name: 'product', params: { id: props.prod
         :savings="product.savings"
         class="mt-1"
       />
-      <p :class="['mt-auto flex items-center gap-1 pt-2 text-xs font-medium', stockStyle.class]">
-        <component :is="stockStyle.icon" v-if="stockStyle.icon" :size="16" aria-hidden="true" />
-        {{ t(`product.stock.${product.stockStatus}`) }}
-      </p>
+      <StockStatus :status="product.stockStatus" class="mt-auto pt-2 text-xs" />
     </div>
   </article>
 </template>

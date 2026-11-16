@@ -6,7 +6,13 @@ import { QUERY_KEYS } from '@/config/catalog'
 export const routes = [
   { path: '/', name: 'home', component: () => import('@/views/HomeView.vue') },
   { path: '/proizvodi', name: 'products', component: () => import('@/views/ProductListView.vue') },
-  { path: '/proizvod/:id', name: 'product', component: () => import('@/views/ProductView.vue') },
+  // props: true passes :id as a prop, so the view does not depend on the router.
+  {
+    path: '/proizvod/:id',
+    name: 'product',
+    component: () => import('@/views/ProductView.vue'),
+    props: true,
+  },
   { path: '/korpa', name: 'cart', component: () => import('@/views/CartView.vue') },
   { path: '/placanje', name: 'checkout', component: () => import('@/views/CheckoutView.vue') },
   {

@@ -18,6 +18,9 @@ export const SEARCH_SUGGESTION_LIMIT = 6
 /** At or below this stock a product shows "Poslednji komadi" (last items). */
 export const LOW_STOCK_THRESHOLD = 5
 
+/** Products in the "Slični proizvodi" row on the product page. */
+export const SIMILAR_PRODUCTS_COUNT = 4
+
 /** Brands shown before "Prikaži još" in the brand filter. */
 export const VISIBLE_BRAND_COUNT = 6
 

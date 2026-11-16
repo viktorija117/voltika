@@ -72,3 +72,17 @@ export function countBrands(products) {
     .map(([brand, count]) => ({ brand, count }))
     .sort((a, b) => a.brand.localeCompare(b.brand))
 }
+
+/**
+ * Other products from the same category, best rated first, for "Slični proizvodi".
+ * @param {import('@/services/productMapper').Product[]} products The whole catalog.
+ * @param {{ id: number, category: string }} product The product being viewed.
+ * @param {number} count
+ * @returns {import('@/services/productMapper').Product[]}
+ */
+export function findSimilarProducts(products, product, count) {
+  const sameCategory = products.filter(
+    (candidate) => candidate.category === product.category && candidate.id !== product.id,
+  )
+  return sortProducts(sameCategory, 'popular').slice(0, count)
+}
