@@ -26,15 +26,32 @@ describe('routes', () => {
 })
 
 describe('scrollBehavior', () => {
+  const location = (path, query = {}, hash = '') => ({ path, query, hash })
+
   it('restores the saved position on back and forward', () => {
-    expect(scrollBehavior({ hash: '' }, {}, { left: 0, top: 480 })).toEqual({ left: 0, top: 480 })
+    const saved = { left: 0, top: 480 }
+    expect(scrollBehavior(location('/korpa'), location('/'), saved)).toEqual(saved)
   })
 
   it('scrolls to an anchor', () => {
-    expect(scrollBehavior({ hash: '#specs' }, {}, null)).toEqual({ el: '#specs' })
+    expect(scrollBehavior(location('/', {}, '#specs'), location('/korpa'), null)).toEqual({
+      el: '#specs',
+    })
   })
 
   it('starts a new page at the top', () => {
-    expect(scrollBehavior({ hash: '' }, {}, null)).toEqual({ top: 0 })
+    expect(scrollBehavior(location('/korpa'), location('/'), null)).toEqual({ top: 0 })
+  })
+
+  it('keeps the position when only a filter changes', () => {
+    const from = location('/proizvodi')
+    const to = location('/proizvodi', { brend: 'Apple' })
+    expect(scrollBehavior(to, from, null)).toBe(false)
+  })
+
+  it('scrolls to the top when the result page changes', () => {
+    const from = location('/proizvodi')
+    const to = location('/proizvodi', { strana: '2' })
+    expect(scrollBehavior(to, from, null)).toEqual({ top: 0 })
   })
 })

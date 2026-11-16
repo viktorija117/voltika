@@ -7,18 +7,68 @@ function normalize(text) {
     .trim()
 }
 
+function matchesSearch(product, term) {
+  return normalize(`${product.name} ${product.brand} ${product.category}`).includes(term)
+}
+
 /**
- * Filters products by category slug and a free-text search over name, brand and category.
- * Empty filters are ignored.
+ * Keeps the products that match every given filter. Missing or empty filters are ignored.
  * @param {import('@/services/productMapper').Product[]} products
- * @param {{ category?: string, search?: string }} filters
+ * @param {Partial<import('@/utils/filterQuery').ListingFilters>} [filters]
  * @returns {import('@/services/productMapper').Product[]}
  */
-export function filterProducts(products, { category = '', search = '' } = {}) {
+export function filterProducts(products, filters = {}) {
+  const {
+    category = '',
+    search = '',
+    brands = [],
+    minPrice = null,
+    maxPrice = null,
+    minRating = null,
+    inStockOnly = false,
+  } = filters
   const term = normalize(search)
-  return products.filter((product) => {
-    if (category && product.category !== category) return false
-    if (!term) return true
-    return normalize(`${product.name} ${product.brand} ${product.category}`).includes(term)
-  })
+  return products.filter(
+    (product) =>
+      (!category || product.category === category) &&
+      (!term || matchesSearch(product, term)) &&
+      (!brands.length || brands.includes(product.brand)) &&
+      (minPrice === null || product.price >= minPrice) &&
+      (maxPrice === null || product.price <= maxPrice) &&
+      (minRating === null || product.rating >= minRating) &&
+      (!inStockOnly || product.stockStatus !== 'outOfStock'),
+  )
+}
+
+const COMPARATORS = {
+  popular: (a, b) => b.rating - a.rating,
+  priceAsc: (a, b) => a.price - b.price,
+  priceDesc: (a, b) => b.price - a.price,
+  discount: (a, b) => b.discountPercent - a.discountPercent,
+}
+
+/**
+ * Returns a sorted copy; the original list is not changed.
+ * @param {import('@/services/productMapper').Product[]} products
+ * @param {string} sort One of SORT_OPTIONS.
+ * @returns {import('@/services/productMapper').Product[]}
+ */
+export function sortProducts(products, sort) {
+  const compare = COMPARATORS[sort] ?? COMPARATORS.popular
+  return products.toSorted(compare)
+}
+
+/**
+ * Brands present in the products, with how many products each has, alphabetically.
+ * @param {import('@/services/productMapper').Product[]} products
+ * @returns {{ brand: string, count: number }[]}
+ */
+export function countBrands(products) {
+  const counts = new Map()
+  for (const { brand } of products) {
+    if (brand) counts.set(brand, (counts.get(brand) ?? 0) + 1)
+  }
+  return [...counts]
+    .map(([brand, count]) => ({ brand, count }))
+    .sort((a, b) => a.brand.localeCompare(b.brand))
 }

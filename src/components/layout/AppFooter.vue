@@ -1,7 +1,6 @@
 <script setup>
 import { ExternalLink } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
-import { RouterLink } from 'vue-router'
 
 import { NAV_CATEGORIES } from '@/config/catalog'
 import { PAYMENT_METHODS, REPOSITORY_URL } from '@/config/project'
@@ -10,6 +9,7 @@ import { productListRoute } from '@/utils/routes'
 import AppLogo from '@/components/layout/AppLogo.vue'
 import FooterNewsletter from '@/components/layout/FooterNewsletter.vue'
 import SupportContact from '@/components/layout/SupportContact.vue'
+import BaseLink from '@/components/ui/BaseLink.vue'
 
 const { t } = useI18n()
 const year = new Date().getFullYear()
@@ -31,12 +31,12 @@ const HEADING_CLASS = 'mb-3 font-heading text-lg font-medium'
         <h2 id="footer-categories" :class="HEADING_CLASS">{{ t('footer.categoriesTitle') }}</h2>
         <ul class="flex flex-col gap-2 text-sm">
           <li v-for="category in NAV_CATEGORIES" :key="category.slug">
-            <RouterLink
+            <BaseLink
               :to="productListRoute({ category: category.slug })"
               class="text-text-muted hover:text-text-brand hover:underline"
             >
               {{ t(category.labelKey) }}
-            </RouterLink>
+            </BaseLink>
           </li>
         </ul>
       </nav>

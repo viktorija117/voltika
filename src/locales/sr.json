@@ -66,7 +66,45 @@
     "showAll": "Pogledaj sve proizvode",
     "errorTitle": "Proizvodi se nisu učitali",
     "errorDescription": "Proveri internet vezu i pokušaj ponovo.",
-    "retry": "Pokušaj ponovo"
+    "retry": "Pokušaj ponovo",
+    "showing": "Prikazano {from}–{to} od {total}"
+  },
+  "filters": {
+    "title": "Filteri",
+    "open": "Filteri",
+    "openWithCount": "Filteri ({count})",
+    "close": "Zatvori filtere",
+    "price": "Cena (RSD)",
+    "priceFrom": "Od",
+    "priceTo": "Do",
+    "brand": "Brend",
+    "showMoreBrands": "Prikaži još ({count})",
+    "showFewerBrands": "Prikaži manje",
+    "rating": "Ocena",
+    "anyRating": "Sve ocene",
+    "ratingAtLeast": "{rating} i više",
+    "availability": "Dostupnost",
+    "inStockOnly": "Samo na stanju",
+    "active": "Aktivni filteri",
+    "clearAll": "Obriši sve",
+    "remove": "Ukloni filter: {label}",
+    "chipFrom": "Od {price}",
+    "chipTo": "Do {price}",
+    "chipRating": "Ocena {rating}+",
+    "showResults": "Prikaži proizvode ({count})"
+  },
+  "sort": {
+    "label": "Sortiraj",
+    "popular": "Najbolje ocenjeni",
+    "priceAsc": "Cena: od najniže",
+    "priceDesc": "Cena: od najviše",
+    "discount": "Najveći popust"
+  },
+  "pagination": {
+    "label": "Strane rezultata",
+    "previous": "Prethodna strana",
+    "next": "Sledeća strana",
+    "page": "Strana {page}"
   },
   "categories": {
     "smartphones": "Telefoni",
