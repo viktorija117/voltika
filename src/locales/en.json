@@ -1,0 +1,28 @@
+{
+  "app": {
+    "name": "Voltika",
+    "demoNotice": "Demo shop · orders are not real"
+  },
+  "pages": {
+    "home": {
+      "title": "Home"
+    },
+    "products": {
+      "title": "Products"
+    },
+    "product": {
+      "title": "Product"
+    },
+    "cart": {
+      "title": "Cart"
+    },
+    "checkout": {
+      "title": "Checkout"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist or has been moved.",
+      "backHome": "Back to home"
+    }
+  }
+}

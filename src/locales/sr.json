@@ -1,0 +1,28 @@
+{
+  "app": {
+    "name": "Voltika",
+    "demoNotice": "Demo prodavnica · porudžbine nisu prave"
+  },
+  "pages": {
+    "home": {
+      "title": "Početna"
+    },
+    "products": {
+      "title": "Proizvodi"
+    },
+    "product": {
+      "title": "Proizvod"
+    },
+    "cart": {
+      "title": "Korpa"
+    },
+    "checkout": {
+      "title": "Plaćanje"
+    },
+    "notFound": {
+      "title": "Stranica nije pronađena",
+      "description": "Stranica koju tražiš ne postoji ili je premeštena.",
+      "backHome": "Nazad na početnu"
+    }
+  }
+}
