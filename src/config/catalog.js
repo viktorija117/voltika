@@ -9,6 +9,9 @@ export const SEARCH_DEBOUNCE_MS = 300
 /** Shortest query that triggers search suggestions. */
 export const SEARCH_MIN_QUERY_LENGTH = 2
 
+/** At or below this stock a product shows "Poslednji komadi" (last items). */
+export const LOW_STOCK_THRESHOLD = 5
+
 /** URL query keys on the listing page, so links and filters share one name. */
 export const QUERY_KEYS = {
   search: 'pretraga',
