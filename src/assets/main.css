@@ -117,6 +117,19 @@
   --container-page: 75rem;
 }
 
+/* Text styles from Figma. Each one switches to its desktop size at the lg breakpoint. */
+@utility heading-1 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-2xl);
+  line-height: var(--text-2xl--line-height);
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: var(--text-4xl);
+    line-height: var(--text-4xl--line-height);
+  }
+}
+
 @layer base {
   body {
     background-color: var(--color-bg-page);
