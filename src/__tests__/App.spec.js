@@ -1,9 +1,9 @@
+import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { h } from 'vue'
-import { mount } from '@vue/test-utils'
 import { createMemoryHistory, createRouter } from 'vue-router'
 
-import App from '../App.vue'
+import App from '@/App.vue'
 
 // Render function instead of a template string: the app uses the runtime-only Vue build.
 const HomeStub = { render: () => h('p', 'Home') }
