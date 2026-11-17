@@ -81,6 +81,24 @@ describe('ProductView', () => {
     expect(wrapper.text()).toContain('Odlično!')
   })
 
+  it('sets the page title and adds Product and BreadcrumbList structured data', async () => {
+    vi.mocked(getProduct).mockResolvedValue(PRODUCT)
+    const wrapper = await mountProductPage()
+
+    expect(document.title).toBe('Bežične slušalice – Voltika')
+    const script = document.head.querySelector('script[type="application/ld+json"]')
+    const [productData, breadcrumbData] = JSON.parse(script.textContent)
+    expect(productData).toMatchObject({ '@type': 'Product', offers: { price: 24000 } })
+    expect(breadcrumbData.itemListElement.map((item) => item.name)).toEqual([
+      'Početna',
+      'Oprema',
+      'Bežične slušalice',
+    ])
+
+    wrapper.unmount()
+    expect(document.head.querySelector('script[type="application/ld+json"]')).toBeNull()
+  })
+
   it('asks for the product from the URL', async () => {
     vi.mocked(getProduct).mockResolvedValue(PRODUCT)
     await mountProductPage('7')

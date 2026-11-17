@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 
 import { useProductFilters } from '@/composables/useProductFilters'
 import { useProductListing } from '@/composables/useProductListing'
+import { useSeo } from '@/composables/useSeo'
 import { useCatalogStore } from '@/stores/catalog'
 import { categoryLabelKey } from '@/utils/categories'
 import { buildFilterQuery } from '@/utils/filterQuery'
@@ -23,6 +24,8 @@ import BaseStateMessage from '@/components/ui/BaseStateMessage.vue'
 // Enough placeholders to fill the first screen on desktop.
 const SKELETON_CARD_COUNT = 6
 const GRID_CLASS = 'grid grid-cols-2 gap-4 sm:grid-cols-3 lg:gap-6'
+// Cards in the first row (up to 3 columns) are on screen right away.
+const ABOVE_FOLD_CARD_COUNT = 3
 
 const { t } = useI18n()
 const catalog = useCatalogStore()
@@ -43,6 +46,19 @@ const title = computed(() => {
   const labelKey = categoryLabelKey(category)
   return labelKey ? t(labelKey) : t('pages.products.title')
 })
+
+const seoDescription = computed(() => {
+  const { search, category } = filters.value
+  if (search) return t('seo.search', { term: search })
+  const labelKey = categoryLabelKey(category)
+  return labelKey ? t('seo.category', { category: t(labelKey) }) : t('seo.products')
+})
+// Brand, price and rating combinations are near-duplicates of the category page.
+useSeo(() => ({
+  title: title.value,
+  description: seoDescription.value,
+  noindex: activeFilterCount.value > 0,
+}))
 
 const showingText = computed(() => {
   const { firstIndex, items } = currentPage.value
@@ -126,9 +142,11 @@ function pageLink(page) {
         </BaseStateMessage>
 
         <template v-else>
+          <!-- Keeps the heading order h1 > h2 > h3 (the cards' names are h3). -->
+          <h2 class="sr-only">{{ t('productList.resultsTitle') }}</h2>
           <ul :class="GRID_CLASS">
-            <li v-for="product in currentPage.items" :key="product.id">
-              <ProductCard :product="product" />
+            <li v-for="(product, index) in currentPage.items" :key="product.id">
+              <ProductCard :product="product" :is-above-fold="index < ABOVE_FOLD_CARD_COUNT" />
             </li>
           </ul>
           <BasePagination

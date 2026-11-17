@@ -25,6 +25,16 @@ describe('ProductCard', () => {
     expect(image.attributes('alt')).toBe('Bežične slušalice')
   })
 
+  it('loads the image right away when the card is in the first row', () => {
+    const { wrapper } = mountWithApp(ProductCard, {
+      props: { product: makeProduct(), isAboveFold: true },
+    })
+    const image = wrapper.get('img')
+
+    expect(image.attributes('loading')).toBe('eager')
+    expect(image.attributes('fetchpriority')).toBe('high')
+  })
+
   it('shows a discount badge only for sale products', () => {
     expect(mountCard().text()).not.toContain('%')
     expect(mountCard({ discountPercent: 20, oldPrice: 24999, savings: 5000 }).text()).toContain(

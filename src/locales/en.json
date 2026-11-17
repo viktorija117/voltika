@@ -2,7 +2,7 @@
   "app": {
     "name": "Voltika",
     "demoNotice": "Demo shop · orders are not real",
-    "homeLink": "Voltika – home"
+    "homeLinkSuffix": " – home"
   },
   "header": {
     "skipToContent": "Skip to content",
@@ -103,7 +103,8 @@
     "errorTitle": "Products could not be loaded",
     "errorDescription": "Check your internet connection and try again.",
     "retry": "Try again",
-    "showing": "Showing {from}–{to} of {total}"
+    "showing": "Showing {from}–{to} of {total}",
+    "resultsTitle": "Results"
   },
   "search": {
     "suggestionsLabel": "Search suggestions",
@@ -349,5 +350,13 @@
       "description": "The page you are looking for does not exist or has been moved.",
       "backHome": "Back to home"
     }
+  },
+  "seo": {
+    "home": "Voltika is a demo electronics shop: phones, laptops, tablets, accessories and watches, with weekly deals and installments.",
+    "products": "Browse phones, laptops, tablets, accessories and watches. Filter by price, brand and rating.",
+    "category": "{category} at Voltika: compare prices, ratings and availability.",
+    "search": "Search results for \"{term}\" at Voltika.",
+    "cart": "The products in your cart, with delivery and the total.",
+    "checkout": "Address, delivery and payment for your order."
   }
 }

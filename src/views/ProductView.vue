@@ -2,13 +2,16 @@
 import { PackageX, RotateCcw, WifiOff } from 'lucide-vue-next'
 import { computed, toRef } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 
 import { useProduct } from '@/composables/useProduct'
+import { useJsonLd, useSeo } from '@/composables/useSeo'
 import { SIMILAR_PRODUCTS_COUNT } from '@/config/catalog'
 import { useCatalogStore } from '@/stores/catalog'
 import { categoryLabelKey } from '@/utils/categories'
 import { findSimilarProducts } from '@/utils/productFilters'
 import { productListRoute } from '@/utils/routes'
+import { absoluteUrl, breadcrumbJsonLd, productJsonLd } from '@/utils/seo'
 
 import ProductBuyBox from '@/components/product/ProductBuyBox.vue'
 import ProductCard from '@/components/product/ProductCard.vue'
@@ -39,6 +42,30 @@ const breadcrumbs = computed(() => {
   }
   items.push({ label: product.value.name })
   return items
+})
+
+// Title and description follow the product once it loads; a missing product is not indexed.
+useSeo(() => {
+  if (status.value === 'success') {
+    return { title: product.value.name, description: product.value.description }
+  }
+  if (status.value === 'notFound') {
+    return { title: t('product.notFoundTitle'), noindex: true }
+  }
+  return { title: t('pages.product.title') }
+})
+
+const router = useRouter()
+const toAbsoluteUrl = (location) => absoluteUrl(router.resolve(location).href)
+
+useJsonLd(() => {
+  if (status.value !== 'success') return null
+  const pageUrl = toAbsoluteUrl({ name: 'product', params: { id: props.id } })
+  const crumbs = breadcrumbs.value.map((item) => ({
+    label: item.label,
+    url: item.to ? toAbsoluteUrl(item.to) : undefined,
+  }))
+  return [productJsonLd(product.value, pageUrl), breadcrumbJsonLd(crumbs)]
 })
 
 const similarProducts = computed(() =>

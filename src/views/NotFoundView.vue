@@ -2,9 +2,17 @@
 import { ArrowLeft } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 
+import { useSeo } from '@/composables/useSeo'
+
 import BaseButton from '@/components/ui/BaseButton.vue'
 
 const { t } = useI18n()
+
+useSeo(() => ({
+  title: t('pages.notFound.title'),
+  description: t('pages.notFound.description'),
+  noindex: true,
+}))
 </script>
 
 <template>

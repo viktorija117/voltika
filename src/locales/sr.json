@@ -2,7 +2,7 @@
   "app": {
     "name": "Voltika",
     "demoNotice": "Demo prodavnica · porudžbine nisu prave",
-    "homeLink": "Voltika – početna"
+    "homeLinkSuffix": " – početna"
   },
   "header": {
     "skipToContent": "Preskoči na sadržaj",
@@ -103,7 +103,8 @@
     "errorTitle": "Proizvodi se nisu učitali",
     "errorDescription": "Proveri internet vezu i pokušaj ponovo.",
     "retry": "Pokušaj ponovo",
-    "showing": "Prikazano {from}–{to} od {total}"
+    "showing": "Prikazano {from}–{to} od {total}",
+    "resultsTitle": "Rezultati"
   },
   "search": {
     "suggestionsLabel": "Predlozi pretrage",
@@ -349,5 +350,13 @@
       "description": "Stranica koju tražiš ne postoji ili je premeštena.",
       "backHome": "Nazad na početnu"
     }
+  },
+  "seo": {
+    "home": "Voltika je demo prodavnica tehnike: telefoni, laptopovi, tableti, oprema i satovi, sa akcijama nedelje i kupovinom na rate.",
+    "products": "Pregledajte telefone, laptopove, tablete, opremu i satove. Filtrirajte po ceni, brendu i oceni.",
+    "category": "{category} u Voltika prodavnici: uporedite cene, ocene i dostupnost.",
+    "search": "Rezultati pretrage za „{term}“ u Voltika prodavnici.",
+    "cart": "Proizvodi u vašoj korpi, sa cenom dostave i ukupnim iznosom.",
+    "checkout": "Adresa, dostava i plaćanje porudžbine."
   }
 }

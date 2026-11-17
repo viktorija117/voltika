@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { HERO_SLIDES } from '@/components/home/heroSlides'
+import { useSeo } from '@/composables/useSeo'
 import { HOME_SHELF_SIZE } from '@/config/home'
 import { useCatalogStore } from '@/stores/catalog'
 import { buildFilterQuery, EMPTY_FILTERS } from '@/utils/filterQuery'
@@ -21,6 +22,9 @@ import ServiceTiles from '@/components/home/ServiceTiles.vue'
 const { t } = useI18n()
 const catalog = useCatalogStore()
 catalog.load()
+
+// The home page title is the site name alone.
+useSeo(() => ({ description: t('seo.home') }))
 
 const isPending = computed(() => catalog.status === 'idle' || catalog.isLoading)
 const deals = computed(() => findDeals(catalog.products, HOME_SHELF_SIZE))
