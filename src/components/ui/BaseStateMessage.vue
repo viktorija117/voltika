@@ -18,7 +18,8 @@ defineProps({
     >
       <component :is="icon" :size="32" aria-hidden="true" />
     </span>
-    <h2 class="font-heading text-xl font-medium">{{ title }}</h2>
+    <!-- tabindex="-1": a page can move focus here after a change (e.g. an order is placed). -->
+    <h2 tabindex="-1" class="font-heading text-xl font-medium focus:outline-none">{{ title }}</h2>
     <p v-if="description" class="max-w-md text-text-muted">{{ description }}</p>
     <div v-if="$slots.default" class="mt-2"><slot /></div>
   </section>

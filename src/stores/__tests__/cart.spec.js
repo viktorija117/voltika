@@ -73,6 +73,16 @@ describe('cart store', () => {
     expect(cart.items).toEqual([{ id: 1, quantity: 4 }])
   })
 
+  it('empties the cart', () => {
+    const cart = createCart()
+    cart.add(PHONE)
+
+    cart.clear()
+
+    expect(cart.items).toEqual([])
+    expect(cart.itemCount).toBe(0)
+  })
+
   it('computes subtotal, shipping and total from catalog prices', () => {
     const cart = createCart()
     cart.add(CABLE, 2)

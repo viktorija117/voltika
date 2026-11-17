@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import { QUERY_KEYS } from '@/config/catalog'
+import { useCartStore } from '@/stores/cart'
 
 // Every view is lazy-loaded, so each page becomes its own JS chunk.
 export const routes = [
@@ -14,7 +15,13 @@ export const routes = [
     props: true,
   },
   { path: '/korpa', name: 'cart', component: () => import('@/views/CartView.vue') },
-  { path: '/placanje', name: 'checkout', component: () => import('@/views/CheckoutView.vue') },
+  {
+    path: '/placanje',
+    name: 'checkout',
+    component: () => import('@/views/CheckoutView.vue'),
+    // There is nothing to pay for with an empty cart.
+    beforeEnter: () => (useCartStore().items.length ? true : { name: 'cart' }),
+  },
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',

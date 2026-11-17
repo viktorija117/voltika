@@ -75,6 +75,11 @@ export const useCartStore = defineStore('cart', () => {
     items.value = items.value.filter((item) => item.id !== id)
   }
 
+  /** Empties the cart after an order is placed. */
+  function clear() {
+    items.value = []
+  }
+
   return {
     items,
     lines,
@@ -87,5 +92,6 @@ export const useCartStore = defineStore('cart', () => {
     setQuantity,
     add,
     remove,
+    clear,
   }
 })

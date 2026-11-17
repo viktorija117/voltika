@@ -1,7 +1,10 @@
+import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import { createMemoryHistory, createRouter } from 'vue-router'
 
+import { makeProduct } from '@/__tests__/helpers'
 import { routes, scrollBehavior } from '@/router'
+import { useCartStore } from '@/stores/cart'
 
 const router = createRouter({ history: createMemoryHistory(), routes })
 
@@ -53,5 +56,23 @@ describe('scrollBehavior', () => {
     const from = location('/proizvodi')
     const to = location('/proizvodi', { strana: '2' })
     expect(scrollBehavior(to, from, null)).toEqual({ top: 0 })
+  })
+})
+
+describe('checkout guard', () => {
+  async function visitCheckout({ withItems }) {
+    setActivePinia(createPinia())
+    if (withItems) useCartStore().add(makeProduct({ id: 1, stock: 5 }))
+    const testRouter = createRouter({ history: createMemoryHistory(), routes })
+    await testRouter.push('/placanje')
+    return testRouter.currentRoute.value.name
+  }
+
+  it('sends an empty cart back to the cart page', async () => {
+    expect(await visitCheckout({ withItems: false })).toBe('cart')
+  })
+
+  it('opens the checkout when the cart has items', async () => {
+    expect(await visitCheckout({ withItems: true })).toBe('checkout')
   })
 })

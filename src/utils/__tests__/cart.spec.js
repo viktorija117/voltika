@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
 import { makeProduct } from '@/__tests__/helpers'
-import { CART_MAX_QUANTITY, COURIER_SHIPPING_PRICE, FREE_SHIPPING_THRESHOLD } from '@/config/cart'
+import {
+  CART_MAX_QUANTITY,
+  COURIER_SHIPPING_PRICE,
+  EXPRESS_SHIPPING_PRICE,
+  FREE_SHIPPING_THRESHOLD,
+} from '@/config/cart'
 import {
   amountToFreeShipping,
   cartSubtotal,
@@ -65,6 +70,12 @@ describe('shippingPrice', () => {
 
   it('charges nothing for an empty cart', () => {
     expect(shippingPrice(0)).toBe(0)
+    expect(shippingPrice(0, 'express')).toBe(0)
+  })
+
+  it('always charges express delivery, even above the threshold', () => {
+    expect(shippingPrice(1000, 'express')).toBe(EXPRESS_SHIPPING_PRICE)
+    expect(shippingPrice(FREE_SHIPPING_THRESHOLD * 2, 'express')).toBe(EXPRESS_SHIPPING_PRICE)
   })
 })
 

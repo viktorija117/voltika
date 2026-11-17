@@ -1,4 +1,9 @@
-import { CART_MAX_QUANTITY, COURIER_SHIPPING_PRICE, FREE_SHIPPING_THRESHOLD } from '@/config/cart'
+import {
+  CART_MAX_QUANTITY,
+  COURIER_SHIPPING_PRICE,
+  EXPRESS_SHIPPING_PRICE,
+  FREE_SHIPPING_THRESHOLD,
+} from '@/config/cart'
 
 /** @typedef {{ id: number, quantity: number }} CartItem */
 /** @typedef {{ product: import('@/services/productMapper').Product, quantity: number }} CartLine */
@@ -34,13 +39,16 @@ export function cartSubtotal(lines) {
 }
 
 /**
- * Courier delivery: free from the threshold up, and nothing to pay for an empty cart.
+ * Delivery price. Courier is free from the threshold up; express always costs the same.
+ * An empty cart has nothing to deliver.
  * @param {number} subtotal
+ * @param {'courier' | 'express'} [method]
  * @returns {number}
  */
-export function shippingPrice(subtotal) {
-  if (subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD) return 0
-  return COURIER_SHIPPING_PRICE
+export function shippingPrice(subtotal, method = 'courier') {
+  if (subtotal === 0) return 0
+  if (method === 'express') return EXPRESS_SHIPPING_PRICE
+  return subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : COURIER_SHIPPING_PRICE
 }
 
 /**
