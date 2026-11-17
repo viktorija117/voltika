@@ -11,3 +11,6 @@ export const EXPRESS_SHIPPING_PRICE = 690
 
 /** Highest quantity of a single product in the cart. */
 export const CART_MAX_QUANTITY = 10
+
+/** localStorage key of the saved cart. Bump the version if the saved shape changes. */
+export const CART_STORAGE_KEY = 'voltika-cart-v1'

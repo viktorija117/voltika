@@ -17,7 +17,8 @@
     "menuTitle": "Menu",
     "mainNav": "Main navigation",
     "allProducts": "All products",
-    "deals": "Deals of the week"
+    "deals": "Deals of the week",
+    "cartCount": "empty | {n} item | {n} items"
   },
   "footer": {
     "description": "A demo electronics shop, built as a portfolio project.",
@@ -109,6 +110,33 @@
     "suggestionCount": "no suggestions | {n} suggestion | {n} suggestions",
     "noResults": "No products for \"{term}\"",
     "showAll": "Show all results for \"{term}\""
+  },
+  "cart": {
+    "add": "Add to cart",
+    "added": "Added to cart: {name}",
+    "viewCart": "View cart",
+    "maxReached": "The cart already holds the maximum quantity.",
+    "loading": "Loading cart…",
+    "emptyTitle": "Your cart is empty",
+    "emptyDescription": "Add products to your cart and you will see them here.",
+    "browse": "Browse products",
+    "items": "Products in the cart",
+    "unitPrice": "{price} each",
+    "remove": "Remove {name} from the cart",
+    "summary": "Order summary",
+    "subtotal": "Subtotal",
+    "shipping": "Delivery",
+    "freeShipping": "Free",
+    "total": "Total",
+    "checkout": "Continue to checkout",
+    "continueShopping": "Continue shopping",
+    "freeShippingReached": "Delivery is free!",
+    "freeShippingRemaining": "{amount} more for free delivery"
+  },
+  "quantity": {
+    "label": "Quantity",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity"
   },
   "filters": {
     "title": "Filters",

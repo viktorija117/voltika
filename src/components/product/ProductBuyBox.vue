@@ -6,6 +6,7 @@ import { INSTALLMENT_COUNT } from '@/config/pricing'
 import { formatPrice, installmentAmount } from '@/utils/price'
 
 import PriceTag from '@/components/product/PriceTag.vue'
+import ProductAddToCart from '@/components/product/ProductAddToCart.vue'
 import ProductServiceInfo from '@/components/product/ProductServiceInfo.vue'
 import RatingStars from '@/components/product/RatingStars.vue'
 import StockStatus from '@/components/product/StockStatus.vue'
@@ -55,6 +56,7 @@ const installmentText = computed(() =>
     </div>
 
     <StockStatus :status="product.stockStatus" class="text-sm" />
+    <ProductAddToCart :product="product" />
 
     <ProductServiceInfo
       :shipping="product.shipping"
