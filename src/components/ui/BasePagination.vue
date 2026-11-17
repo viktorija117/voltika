@@ -50,7 +50,7 @@ const ARROW_CLASS = `${ITEM_CLASS} border border-border-input`
           :aria-label="t('pagination.page', { page: item })"
           :class="[
             ITEM_CLASS,
-            item === page ? 'bg-bg-brand text-text-inverse' : 'hover:bg-bg-subtle',
+            item === page ? 'bg-bg-brand text-text-on-brand' : 'hover:bg-bg-subtle',
           ]"
         >
           {{ item }}

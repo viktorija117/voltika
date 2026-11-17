@@ -21,7 +21,7 @@ const { itemCount } = storeToRefs(useCartStore())
       <span
         v-if="itemCount"
         aria-hidden="true"
-        class="absolute -top-2 -right-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-bg-accent px-1 text-xs font-bold text-text-on-accent"
+        class="absolute -top-2 -right-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-holo px-1 text-xs font-bold text-text-on-accent"
       >
         {{ itemCount }}
       </span>

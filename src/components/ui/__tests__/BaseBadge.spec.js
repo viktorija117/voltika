@@ -6,7 +6,7 @@ import BaseBadge from '@/components/ui/BaseBadge.vue'
 describe('BaseBadge', () => {
   it.each([
     ['sale', '-20%', 'bg-bg-sale'],
-    ['new', 'Novo', 'bg-bg-accent'],
+    ['new', 'Novo', 'bg-holo'],
     ['lowStock', 'Poslednji komadi', 'bg-bg-brand-subtle'],
   ])('renders the %s variant with its text', (variant, text, expectedClass) => {
     const badge = mount(BaseBadge, { props: { variant }, slots: { default: text } })

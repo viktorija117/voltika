@@ -1,8 +1,8 @@
 <script>
 // Module scope, so the defineProps validator below can use it.
 const VARIANT_CLASSES = {
-  brand: 'bg-bg-brand text-text-inverse',
-  accent: 'bg-bg-accent text-text-on-accent',
+  brand: 'border border-border-subtle bg-spotlight text-text-default',
+  accent: 'bg-holo text-text-on-accent',
 }
 </script>
 
@@ -37,7 +37,7 @@ const TILE_CLASSES = ['right-4 bottom-6 rotate-6', 'hidden sm:flex top-6 right-2
       VARIANT_CLASSES[variant],
     ]"
   >
-    <h2 class="max-w-[60%] font-heading text-2xl font-bold lg:text-3xl">{{ title }}</h2>
+    <h2 class="max-w-[60%] font-heading text-2xl font-semibold lg:text-3xl">{{ title }}</h2>
     <p class="max-w-[60%] text-sm">{{ text }}</p>
     <span class="flex items-center gap-1 text-sm font-medium group-hover:underline">
       {{ linkLabel }}
@@ -48,11 +48,11 @@ const TILE_CLASSES = ['right-4 bottom-6 rotate-6', 'hidden sm:flex top-6 right-2
       :key="index"
       aria-hidden="true"
       :class="[
-        'absolute -z-10 flex size-20 items-center justify-center rounded-lg bg-bg-surface text-text-brand lg:size-24',
+        'absolute -z-10 flex size-20 items-center justify-center rounded-lg border border-border-strong bg-bg-surface/80 text-text-default shadow-lg backdrop-blur-md lg:size-24',
         TILE_CLASSES[index],
       ]"
     >
-      <component :is="icon" class="size-9 lg:size-11" />
+      <component :is="icon" class="size-9 lg:size-11" :stroke-width="1.5" />
     </span>
   </RouterLink>
 </template>

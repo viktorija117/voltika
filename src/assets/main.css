@@ -8,67 +8,75 @@
  */
 @theme {
   /* ---------- Primitives (never used directly in components) ---------- */
+  /* "Graphite": a dark, phone-casing grey with a holographic accent. */
   --color-*: initial;
-  --color-primary-50: #eef0ff;
-  --color-primary-100: #e0e3ff;
-  --color-primary-600: #3b3fe6;
-  --color-primary-700: #2e2fb8;
-  --color-accent-300: #d8f86e;
-  --color-accent-400: #c6f432;
-  --color-accent-500: #a8d600;
-  --color-sale-50: #fff0f3;
-  --color-sale-600: #d9184b;
-  --color-sale-700: #b0103b;
-  --color-success-50: #edfaf2;
-  --color-success-600: #16834a;
-  --color-success-700: #116a3b;
-  --color-error-50: #fef1f0;
-  --color-error-600: #d92d20;
-  --color-error-700: #b42318;
   --color-neutral-0: #ffffff;
-  --color-neutral-50: #f6f7fb;
-  --color-neutral-100: #eceef4;
-  --color-neutral-200: #dde0e9;
-  --color-neutral-300: #c9cdd9;
-  --color-neutral-400: #8c92a4;
-  --color-neutral-500: #5e6476;
-  --color-neutral-700: #3a3f4e;
-  --color-neutral-900: #0f1222;
+  --color-neutral-50: #f1f2f4;
+  --color-neutral-200: #c4c8d1;
+  --color-neutral-300: #a3a8b4;
+  --color-neutral-400: #6e7380;
+  --color-neutral-600: #3a3e47;
+  --color-neutral-700: #2a2d34;
+  --color-neutral-800: #1f2227;
+  --color-neutral-850: #17191d;
+  --color-neutral-900: #0e0f12;
+  --color-neutral-950: #060708;
+  --color-periwinkle-300: #b8c6ff;
+  --color-periwinkle-800: #232838;
+  --color-periwinkle-700: #2c3246;
+  --color-coral-300: #ff8a7a;
+  --color-coral-400: #ff7a6b;
+  --color-coral-900: #3a1f1f;
+  --color-mint-300: #6fe3a5;
+  --color-mint-900: #16302a;
+  --color-rose-300: #ff9b9b;
+  --color-rose-400: #ff6b6b;
+  --color-rose-900: #3a1d1f;
 
   /* ---------- Semantic colors (use these in components) ---------- */
-  --color-text-default: var(--color-neutral-900);
-  --color-text-muted: var(--color-neutral-500);
-  --color-text-inverse: var(--color-neutral-0);
+  --color-text-default: var(--color-neutral-50);
+  --color-text-muted: var(--color-neutral-300);
+  --color-text-inverse: var(--color-neutral-50);
+  --color-text-on-brand: var(--color-neutral-900);
   --color-text-on-accent: var(--color-neutral-900);
-  --color-text-brand: var(--color-primary-600);
-  --color-text-sale: var(--color-sale-600);
-  --color-text-success: var(--color-success-700);
-  --color-text-error: var(--color-error-700);
+  --color-text-on-sale: var(--color-neutral-900);
+  --color-text-brand: var(--color-periwinkle-300);
+  --color-text-sale: var(--color-coral-300);
+  --color-text-success: var(--color-mint-300);
+  --color-text-error: var(--color-rose-300);
   --color-text-disabled: var(--color-neutral-400);
 
-  --color-bg-page: var(--color-neutral-50);
-  --color-bg-surface: var(--color-neutral-0);
-  --color-bg-subtle: var(--color-neutral-100);
-  --color-bg-inverse: var(--color-neutral-900);
-  --color-bg-brand: var(--color-primary-600);
-  --color-bg-brand-hover: var(--color-primary-700);
-  --color-bg-brand-subtle: var(--color-primary-50);
-  --color-bg-brand-subtle-hover: var(--color-primary-100);
-  --color-bg-accent: var(--color-accent-400);
-  --color-bg-accent-hover: var(--color-accent-500);
-  --color-bg-sale: var(--color-sale-600);
-  --color-bg-sale-subtle: var(--color-sale-50);
-  --color-bg-success-subtle: var(--color-success-50);
-  --color-bg-error-subtle: var(--color-error-50);
+  --color-bg-page: var(--color-neutral-900);
+  --color-bg-surface: var(--color-neutral-850);
+  --color-bg-subtle: var(--color-neutral-800);
+  /* The darkest band: top bar, countdown tiles and the dialog backdrop. */
+  --color-bg-inverse: var(--color-neutral-950);
+  /* Solid "chrome" for primary buttons and the current page/step. */
+  --color-bg-brand: var(--color-neutral-50);
+  --color-bg-brand-hover: var(--color-neutral-0);
+  --color-bg-brand-subtle: var(--color-periwinkle-800);
+  --color-bg-brand-subtle-hover: var(--color-periwinkle-700);
+  /* Solid stand-in for the holographic gradient (see bg-holo). */
+  --color-bg-accent: var(--color-periwinkle-300);
+  --color-bg-accent-hover: var(--color-neutral-0);
+  --color-bg-sale: var(--color-coral-400);
+  --color-bg-sale-subtle: var(--color-coral-900);
+  --color-bg-success-subtle: var(--color-mint-900);
+  --color-bg-error-subtle: var(--color-rose-900);
 
-  --color-border-subtle: var(--color-neutral-200);
+  --color-border-subtle: var(--color-neutral-700);
+  --color-border-strong: var(--color-neutral-600);
+  /* At least 3:1 against the surface, so field edges stay visible (WCAG 1.4.11). */
   --color-border-input: var(--color-neutral-400);
-  --color-border-focus: var(--color-primary-600);
-  --color-border-error: var(--color-error-600);
+  --color-border-focus: var(--color-periwinkle-300);
+  --color-border-error: var(--color-rose-400);
+
+  /* Holographic foil, like the inside of a headphone box. Used through bg-holo / text-holo. */
+  --gradient-holo: linear-gradient(110deg, #b8c6ff 0%, #f3b8ff 35%, #a6f0e4 70%, #fff1b8 100%);
 
   /* ---------- Typography ---------- */
   --font-*: initial;
-  --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Sora', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --default-font-family: var(--font-body);
 
@@ -103,14 +111,16 @@
 
   /* ---------- Radius and shadows ---------- */
   --radius-*: initial;
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
   --radius-full: 9999px;
 
+  /* On a dark page shadows are deep and soft; borders do most of the separating. */
   --shadow-*: initial;
-  --shadow-sm: 0 1px 3px rgb(15 18 34 / 0.08);
-  --shadow-lg: 0 12px 32px rgb(15 18 34 / 0.14);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 6px 18px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 18px 48px rgb(0 0 0 / 0.55);
 
   /* ---------- Layout ---------- */
   /* Page content width from the Figma grid (1440 frame, 120px gutters). */
@@ -125,10 +135,32 @@
   padding-inline: calc(var(--spacing) * 4);
 }
 
+/* Holographic foil as a background (buttons, badges, logo) or as text fill. */
+@utility bg-holo {
+  background-image: var(--gradient-holo);
+}
+
+@utility text-holo {
+  background-image: var(--gradient-holo);
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft light falling on graphite, for hero and promo surfaces. */
+@utility bg-spotlight {
+  background-image: radial-gradient(
+    120% 90% at 85% 10%,
+    var(--color-neutral-700) 0%,
+    var(--color-neutral-850) 55%,
+    var(--color-neutral-900) 100%
+  );
+}
+
 /* Text styles from Figma. Each one switches to its desktop size at the lg breakpoint. */
 @utility heading-1 {
   font-family: var(--font-heading);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.03em;
   font-size: var(--text-2xl);
   line-height: var(--text-2xl--line-height);
 
@@ -139,9 +171,20 @@
 }
 
 @layer base {
+  html {
+    color-scheme: dark;
+  }
+
   body {
     background-color: var(--color-bg-page);
     color: var(--color-text-default);
+  }
+
+  /* Headings in Sora are set slightly tighter, as in the design. */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
   }
 
   /* While a modal dialog (mobile menu) is open, the page behind it must not scroll. */

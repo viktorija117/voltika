@@ -4,9 +4,9 @@
 // and still works on links, where the `enabled:` variant would never match.
 const VARIANT_CLASSES = {
   primary:
-    'bg-bg-brand text-text-inverse not-disabled:hover:bg-bg-brand-hover disabled:bg-bg-subtle disabled:text-text-disabled',
+    'bg-bg-brand text-text-on-brand not-disabled:hover:bg-bg-brand-hover disabled:bg-bg-subtle disabled:text-text-disabled',
   accent:
-    'bg-bg-accent text-text-on-accent not-disabled:hover:bg-bg-accent-hover disabled:bg-bg-subtle disabled:text-text-disabled',
+    'bg-holo text-text-on-accent not-disabled:hover:brightness-110 disabled:bg-bg-subtle disabled:bg-none disabled:text-text-disabled',
   secondary:
     'bg-bg-brand-subtle text-text-brand not-disabled:hover:bg-bg-brand-subtle-hover disabled:bg-bg-subtle disabled:text-text-disabled',
   ghost: 'text-text-brand not-disabled:hover:bg-bg-brand-subtle disabled:text-text-disabled',
@@ -38,7 +38,7 @@ const props = defineProps({
 const isLink = computed(() => props.to !== null)
 
 const classes = computed(() => [
-  'inline-flex h-11 items-center justify-center gap-2 rounded-md px-4 text-sm font-medium',
+  'inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium',
   'transition-colors motion-reduce:transition-none disabled:cursor-not-allowed',
   VARIANT_CLASSES[props.variant],
   { 'w-full': props.block },

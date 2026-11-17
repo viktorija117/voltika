@@ -2,8 +2,8 @@
 // Module scope, so the defineProps validator below can use it.
 // Variants match the Figma "Badge" component. The text carries the meaning; color only supports it.
 const VARIANT_CLASSES = {
-  sale: 'bg-bg-sale text-text-inverse',
-  new: 'bg-bg-accent text-text-on-accent',
+  sale: 'bg-bg-sale text-text-on-sale',
+  new: 'bg-holo text-text-on-accent',
   lowStock: 'bg-bg-brand-subtle text-text-brand',
 }
 </script>

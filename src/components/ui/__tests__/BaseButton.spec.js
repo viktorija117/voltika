@@ -28,7 +28,7 @@ describe('BaseButton', () => {
 
   it.each([
     ['primary', 'bg-bg-brand'],
-    ['accent', 'bg-bg-accent'],
+    ['accent', 'bg-holo'],
     ['secondary', 'bg-bg-brand-subtle'],
     ['ghost', 'text-text-brand'],
   ])('applies the %s variant classes', (variant, expectedClass) => {

@@ -23,7 +23,7 @@ const { t } = useI18n()
       <span
         :class="[
           'flex size-8 shrink-0 items-center justify-center rounded-full text-sm font-bold',
-          index <= current ? 'bg-bg-brand text-text-inverse' : 'bg-bg-subtle text-text-muted',
+          index <= current ? 'bg-bg-brand text-text-on-brand' : 'bg-bg-subtle text-text-muted',
         ]"
         aria-hidden="true"
       >
