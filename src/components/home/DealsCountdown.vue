@@ -25,7 +25,7 @@ const accessibleLabel = computed(() => t('home.countdown.label', parts.value))
       <span
         v-for="unit in UNITS"
         :key="unit"
-        class="flex w-12 flex-col items-center rounded-sm bg-bg-inverse py-1 text-text-inverse"
+        class="flex w-12 flex-col items-center rounded-md border border-border-subtle bg-bg-inverse py-1 text-text-inverse"
       >
         <span class="font-heading text-lg leading-tight font-bold tabular-nums">
           {{ pad(parts[unit]) }}

@@ -17,7 +17,7 @@ const { t } = useI18n()
         <li>
           <BaseLink
             :to="productListRoute()"
-            class="flex h-10 items-center gap-2 rounded-md bg-bg-brand px-4 text-sm font-medium text-text-inverse hover:bg-bg-brand-hover"
+            class="flex h-10 items-center gap-2 rounded-full bg-bg-brand px-4 text-sm font-medium text-text-on-brand hover:bg-bg-brand-hover"
           >
             <Menu :size="20" aria-hidden="true" />
             {{ t('header.allProducts') }}

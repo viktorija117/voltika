@@ -10,7 +10,7 @@ const { t } = useI18n()
   <RouterLink :to="{ name: 'home' }" class="flex items-center gap-2">
     <span
       aria-hidden="true"
-      class="flex size-8 items-center justify-center rounded-md bg-bg-accent font-heading text-lg font-bold text-text-on-accent"
+      class="flex size-8 items-center justify-center rounded-md bg-holo font-heading text-lg font-bold text-text-on-accent"
     >
       V
     </span>
