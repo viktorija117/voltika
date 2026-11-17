@@ -209,6 +209,81 @@
       "backHome": "Nazad na početnu"
     }
   },
+  "home": {
+    "title": "Voltika – prodavnica tehnike",
+    "slider": {
+      "label": "Istaknuto",
+      "slide": "Slajd {current} od {total}",
+      "goTo": "Prikaži slajd {n}",
+      "previous": "Prethodni slajd",
+      "next": "Sledeći slajd",
+      "pause": "Pauziraj",
+      "play": "Pokreni"
+    },
+    "slides": {
+      "deals": {
+        "eyebrow": "Black Friday nedelja",
+        "title": "Najveći popusti nedelje",
+        "text": "Telefoni, laptopovi i oprema po sniženim cenama, samo do nedelje u ponoć.",
+        "cta": "Pogledaj akcije"
+      },
+      "laptops": {
+        "eyebrow": "Novo u ponudi",
+        "title": "Laptopovi za posao i školu",
+        "text": "Lagani, brzi i spremni za ceo dan rada.",
+        "cta": "Pogledaj laptopove"
+      },
+      "phones": {
+        "eyebrow": "Na rate bez kamate",
+        "title": "Novi telefon, do {count} rata",
+        "text": "Platite telefon u ratama, bez kamate i bez troškova obrade.",
+        "cta": "Pogledaj telefone"
+      }
+    },
+    "discountSticker": "do −{percent}%",
+    "services": {
+      "label": "Prednosti kupovine",
+      "shipping": {
+        "title": "Besplatna dostava",
+        "text": "Za porudžbine od {amount}"
+      },
+      "installments": {
+        "title": "Na rate bez kamate",
+        "text": "Do {count} rata platnim karticama"
+      },
+      "support": {
+        "title": "Stručna podrška",
+        "text": "Pozovite {phone}, radnim danima 8–20h"
+      }
+    },
+    "categories": "Kategorije",
+    "allCategories": "Svi proizvodi",
+    "deals": "Akcije nedelje",
+    "allDeals": "Sve akcije",
+    "endsIn": "Ističe za",
+    "countdown": {
+      "days": "dana",
+      "hours": "sati",
+      "minutes": "min",
+      "seconds": "sek",
+      "label": "{days} d {hours} h {minutes} min do kraja akcije"
+    },
+    "dealsOver": "Akcije ove nedelje su završene. Nove stižu od ponedeljka.",
+    "topRated": "Najbolje ocenjeni",
+    "viewAll": "Pogledaj sve",
+    "promos": {
+      "accessories": {
+        "title": "Oprema za telefon",
+        "text": "Punjači, maske i slušalice za svaki dan.",
+        "cta": "Pogledaj ponudu"
+      },
+      "watches": {
+        "title": "Satovi",
+        "text": "Klasični i pametni satovi za svaku priliku.",
+        "cta": "Pogledaj ponudu"
+      }
+    }
+  },
   "filters": {
     "title": "Filteri",
     "open": "Filteri",
