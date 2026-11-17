@@ -1,11 +1,11 @@
 <script setup>
-import { Menu, ShoppingCart } from 'lucide-vue-next'
+import { Menu } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { RouterLink } from 'vue-router'
 
 import AppLogo from '@/components/layout/AppLogo.vue'
 import AppTopBar from '@/components/layout/AppTopBar.vue'
+import HeaderCartLink from '@/components/layout/HeaderCartLink.vue'
 import HeaderNav from '@/components/layout/HeaderNav.vue'
 import HeaderSearch from '@/components/layout/HeaderSearch.vue'
 import MobileDrawer from '@/components/layout/MobileDrawer.vue'
@@ -43,13 +43,7 @@ const isMenuOpen = ref(false)
       <div class="order-last w-full lg:order-none lg:flex-1">
         <HeaderSearch />
       </div>
-      <RouterLink
-        :to="{ name: 'cart' }"
-        class="ml-auto flex h-11 min-w-11 items-center justify-center gap-2 rounded-md px-2 hover:bg-bg-subtle lg:ml-0"
-      >
-        <ShoppingCart :size="24" aria-hidden="true" />
-        <span class="sr-only text-sm font-medium lg:not-sr-only">{{ t('header.cart') }}</span>
-      </RouterLink>
+      <HeaderCartLink class="ml-auto lg:ml-0" />
     </div>
 
     <HeaderNav />

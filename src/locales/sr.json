@@ -17,7 +17,8 @@
     "menuTitle": "Meni",
     "mainNav": "Glavna navigacija",
     "allProducts": "Svi proizvodi",
-    "deals": "Akcije nedelje"
+    "deals": "Akcije nedelje",
+    "cartCount": "prazna | {n} artikal | {n} artikla | {n} artikala"
   },
   "footer": {
     "description": "Demo prodavnica tehnike, napravljena kao portfolio projekat.",
@@ -109,6 +110,33 @@
     "suggestionCount": "nema predloga | {n} predlog | {n} predloga | {n} predloga",
     "noResults": "Nema proizvoda za „{term}“",
     "showAll": "Prikaži sve rezultate za „{term}“"
+  },
+  "cart": {
+    "add": "Dodaj u korpu",
+    "added": "Dodato u korpu: {name}",
+    "viewCart": "Pogledaj korpu",
+    "maxReached": "U korpi je već najveća dozvoljena količina.",
+    "loading": "Učitavanje korpe…",
+    "emptyTitle": "Korpa je prazna",
+    "emptyDescription": "Dodaj proizvode u korpu i ovde ćeš videti njihov pregled.",
+    "browse": "Pogledaj proizvode",
+    "items": "Proizvodi u korpi",
+    "unitPrice": "{price} / kom.",
+    "remove": "Ukloni {name} iz korpe",
+    "summary": "Pregled porudžbine",
+    "subtotal": "Međuzbir",
+    "shipping": "Dostava",
+    "freeShipping": "Besplatna",
+    "total": "Ukupno",
+    "checkout": "Nastavi na plaćanje",
+    "continueShopping": "Nastavi kupovinu",
+    "freeShippingReached": "Dostava je besplatna!",
+    "freeShippingRemaining": "Još {amount} do besplatne dostave"
+  },
+  "quantity": {
+    "label": "Količina",
+    "decrease": "Smanji količinu",
+    "increase": "Povećaj količinu"
   },
   "filters": {
     "title": "Filteri",
