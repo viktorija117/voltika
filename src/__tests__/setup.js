@@ -1,4 +1,9 @@
-import { beforeEach } from 'vitest'
+import { enableAutoUnmount } from '@vue/test-utils'
+import { afterEach, beforeEach } from 'vitest'
+
+// Every mounted component is removed after its test, so timers, listeners and
+// tags added to <head> never leak into the next test.
+enableAutoUnmount(afterEach)
 
 // jsdom has <dialog> but not its showModal() and close() methods yet.
 // Minimal stand-ins: toggle the `open` attribute and fire `close` like a browser does.

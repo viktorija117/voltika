@@ -106,7 +106,7 @@ const CONTROL_CLASS =
         <li v-for="(slide, index) in slides" :key="slide.id">
           <button
             type="button"
-            class="flex h-11 items-center px-1.5"
+            class="flex h-11 min-w-6 items-center justify-center px-1.5"
             :aria-label="t('home.slider.goTo', { n: index + 1 })"
             :aria-current="index === current ? 'true' : undefined"
             @click="goTo(index)"

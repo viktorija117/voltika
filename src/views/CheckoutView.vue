@@ -4,6 +4,7 @@ import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { CHECKOUT_STEPS, useCheckout } from '@/composables/useCheckout'
+import { useSeo } from '@/composables/useSeo'
 import { useCartStore } from '@/stores/cart'
 import { useCatalogStore } from '@/stores/catalog'
 
@@ -37,6 +38,12 @@ const {
   goTo,
   placeOrder,
 } = useCheckout()
+
+useSeo(() => ({
+  title: t('pages.checkout.title'),
+  description: t('seo.checkout'),
+  noindex: true,
+}))
 
 const isPending = computed(() => catalog.status === 'idle' || catalog.isLoading)
 const stepLabels = computed(() => CHECKOUT_STEPS.map((step) => t(`checkout.steps.${step}`)))

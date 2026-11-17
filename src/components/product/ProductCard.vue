@@ -15,6 +15,8 @@ const IMAGE_SIZE = 300
 const props = defineProps({
   /** @type {import('vue').PropType<import('@/services/productMapper').Product>} */
   product: { type: Object, required: true },
+  /** First row on the page: load the image right away, it is the largest thing on screen. */
+  isAboveFold: { type: Boolean, default: false },
 })
 
 const { t } = useI18n()
@@ -33,7 +35,8 @@ const productRoute = computed(() => ({ name: 'product', params: { id: props.prod
         :alt="product.name"
         :width="IMAGE_SIZE"
         :height="IMAGE_SIZE"
-        loading="lazy"
+        :loading="isAboveFold ? 'eager' : 'lazy'"
+        :fetchpriority="isAboveFold ? 'high' : undefined"
         decoding="async"
         class="size-full object-contain p-4"
       />

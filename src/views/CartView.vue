@@ -3,6 +3,7 @@ import { RotateCcw, ShoppingCart, WifiOff } from 'lucide-vue-next'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { useSeo } from '@/composables/useSeo'
 import { useCartStore } from '@/stores/cart'
 import { useCatalogStore } from '@/stores/catalog'
 
@@ -16,6 +17,8 @@ const cart = useCartStore()
 const catalog = useCatalogStore()
 // Names and current prices come from the catalog.
 catalog.load()
+
+useSeo(() => ({ title: t('pages.cart.title'), description: t('seo.cart'), noindex: true }))
 
 const isPending = computed(() => catalog.status === 'idle' || catalog.isLoading)
 </script>
