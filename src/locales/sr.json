@@ -138,6 +138,77 @@
     "decrease": "Smanji količinu",
     "increase": "Povećaj količinu"
   },
+  "checkout": {
+    "steps": {
+      "label": "Koraci plaćanja",
+      "address": "Adresa",
+      "shipping": "Dostava i plaćanje",
+      "review": "Pregled",
+      "stepOf": "Korak {current} od {total}"
+    },
+    "loading": "Učitavanje…",
+    "address": {
+      "title": "Adresa za dostavu",
+      "fullName": "Ime i prezime",
+      "email": "Email",
+      "phone": "Telefon",
+      "phoneHint": "Npr. 064 123 4567",
+      "street": "Ulica i broj",
+      "city": "Grad",
+      "postalCode": "Poštanski broj"
+    },
+    "errors": {
+      "fullName": "Unesite ime i prezime.",
+      "email": "Unesite ispravnu email adresu, npr. ime{'@'}primer.rs",
+      "phone": "Unesite ispravan broj telefona, npr. 064 123 4567.",
+      "street": "Unesite ulicu i broj.",
+      "city": "Unesite grad.",
+      "postalCode": "Poštanski broj ima 5 cifara, npr. 11000."
+    },
+    "shipping": {
+      "title": "Dostava i plaćanje",
+      "method": "Način dostave",
+      "payment": "Način plaćanja",
+      "free": "Besplatno"
+    },
+    "shippingMethods": {
+      "courier": {
+        "label": "Kurirska služba",
+        "description": "Isporuka za 2–3 radna dana"
+      },
+      "express": {
+        "label": "Ekspresna dostava",
+        "description": "Isporuka sledećeg radnog dana"
+      }
+    },
+    "paymentOptions": {
+      "cashOnDelivery": {
+        "label": "Pouzećem",
+        "description": "Plaćate kuriru prilikom preuzimanja"
+      },
+      "card": {
+        "label": "Platnom karticom",
+        "description": "Demo: podaci o kartici se ne traže"
+      }
+    },
+    "review": {
+      "title": "Proverite porudžbinu",
+      "items": "Proizvodi",
+      "deliverTo": "Dostava na adresu",
+      "method": "Dostava i plaćanje",
+      "edit": "Izmeni",
+      "quantity": "{quantity} × {price}"
+    },
+    "back": "Nazad",
+    "next": "Nastavi",
+    "confirm": "Potvrdi porudžbinu",
+    "success": {
+      "title": "Hvala na porudžbini!",
+      "orderNumber": "Broj porudžbine: {number}",
+      "demoNotice": "Ovo je demo prodavnica: porudžbina nije poslata i ništa nije naplaćeno.",
+      "backHome": "Nazad na početnu"
+    }
+  },
   "filters": {
     "title": "Filteri",
     "open": "Filteri",

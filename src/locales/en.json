@@ -138,6 +138,77 @@
     "decrease": "Decrease quantity",
     "increase": "Increase quantity"
   },
+  "checkout": {
+    "steps": {
+      "label": "Checkout steps",
+      "address": "Address",
+      "shipping": "Delivery and payment",
+      "review": "Review",
+      "stepOf": "Step {current} of {total}"
+    },
+    "loading": "Loading…",
+    "address": {
+      "title": "Delivery address",
+      "fullName": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "phoneHint": "E.g. 064 123 4567",
+      "street": "Street and number",
+      "city": "City",
+      "postalCode": "Postal code"
+    },
+    "errors": {
+      "fullName": "Enter your full name.",
+      "email": "Enter a valid email address, e.g. name{'@'}example.com",
+      "phone": "Enter a valid phone number, e.g. 064 123 4567.",
+      "street": "Enter the street and number.",
+      "city": "Enter the city.",
+      "postalCode": "A postal code has 5 digits, e.g. 11000."
+    },
+    "shipping": {
+      "title": "Delivery and payment",
+      "method": "Delivery method",
+      "payment": "Payment method",
+      "free": "Free"
+    },
+    "shippingMethods": {
+      "courier": {
+        "label": "Courier",
+        "description": "Delivered in 2–3 working days"
+      },
+      "express": {
+        "label": "Express delivery",
+        "description": "Delivered the next working day"
+      }
+    },
+    "paymentOptions": {
+      "cashOnDelivery": {
+        "label": "Cash on delivery",
+        "description": "Pay the courier when the parcel arrives"
+      },
+      "card": {
+        "label": "Payment card",
+        "description": "Demo: no card details are asked for"
+      }
+    },
+    "review": {
+      "title": "Check your order",
+      "items": "Products",
+      "deliverTo": "Delivery address",
+      "method": "Delivery and payment",
+      "edit": "Edit",
+      "quantity": "{quantity} × {price}"
+    },
+    "back": "Back",
+    "next": "Continue",
+    "confirm": "Place order",
+    "success": {
+      "title": "Thank you for your order!",
+      "orderNumber": "Order number: {number}",
+      "demoNotice": "This is a demo shop: the order was not sent and nothing was charged.",
+      "backHome": "Back to home"
+    }
+  },
   "filters": {
     "title": "Filters",
     "open": "Filters",
