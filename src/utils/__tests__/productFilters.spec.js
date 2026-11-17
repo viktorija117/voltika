@@ -4,7 +4,9 @@ import { makeProduct } from '@/__tests__/helpers'
 import {
   countBrands,
   filterProducts,
+  findDeals,
   findSimilarProducts,
+  findTopRated,
   sortProducts,
 } from '@/utils/productFilters'
 
@@ -125,5 +127,39 @@ describe('findSimilarProducts', () => {
 
   it('returns nothing while the catalog is empty', () => {
     expect(findSimilarProducts([], current, 4)).toEqual([])
+  })
+})
+
+describe('findDeals', () => {
+  it('returns products on sale, biggest discount first', () => {
+    const products = [
+      makeProduct({ id: 1, discountPercent: 12 }),
+      makeProduct({ id: 2, discountPercent: 0 }),
+      makeProduct({ id: 3, discountPercent: 19 }),
+      makeProduct({ id: 4, discountPercent: 15 }),
+    ]
+
+    expect(findDeals(products, 2).map((product) => product.id)).toEqual([3, 4])
+  })
+
+  it('leaves out products that are out of stock', () => {
+    const products = [
+      makeProduct({ id: 1, discountPercent: 30, stockStatus: 'outOfStock' }),
+      makeProduct({ id: 2, discountPercent: 10 }),
+    ]
+
+    expect(findDeals(products, 4).map((product) => product.id)).toEqual([2])
+  })
+})
+
+describe('findTopRated', () => {
+  it('returns the best rated products', () => {
+    const products = [
+      makeProduct({ id: 1, rating: 3 }),
+      makeProduct({ id: 2, rating: 4.9 }),
+      makeProduct({ id: 3, rating: 4.1 }),
+    ]
+
+    expect(findTopRated(products, 2).map((product) => product.id)).toEqual([2, 3])
   })
 })

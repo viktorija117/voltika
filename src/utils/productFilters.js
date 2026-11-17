@@ -84,5 +84,28 @@ export function findSimilarProducts(products, product, count) {
   const sameCategory = products.filter(
     (candidate) => candidate.category === product.category && candidate.id !== product.id,
   )
-  return sortProducts(sameCategory, 'popular').slice(0, count)
+  return findTopRated(sameCategory, count)
+}
+
+/**
+ * Products on sale that can be bought, biggest discount first, for "Akcije nedelje".
+ * @param {import('@/services/productMapper').Product[]} products
+ * @param {number} count
+ * @returns {import('@/services/productMapper').Product[]}
+ */
+export function findDeals(products, count) {
+  const onSale = products.filter(
+    (product) => product.discountPercent > 0 && product.stockStatus !== 'outOfStock',
+  )
+  return sortProducts(onSale, 'discount').slice(0, count)
+}
+
+/**
+ * Best rated products, for "Najbolje ocenjeni".
+ * @param {import('@/services/productMapper').Product[]} products
+ * @param {number} count
+ * @returns {import('@/services/productMapper').Product[]}
+ */
+export function findTopRated(products, count) {
+  return sortProducts(products, 'popular').slice(0, count)
 }

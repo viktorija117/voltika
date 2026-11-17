@@ -209,6 +209,81 @@
       "backHome": "Back to home"
     }
   },
+  "home": {
+    "title": "Voltika – electronics shop",
+    "slider": {
+      "label": "Featured",
+      "slide": "Slide {current} of {total}",
+      "goTo": "Show slide {n}",
+      "previous": "Previous slide",
+      "next": "Next slide",
+      "pause": "Pause",
+      "play": "Play"
+    },
+    "slides": {
+      "deals": {
+        "eyebrow": "Black Friday week",
+        "title": "The best deals of the week",
+        "text": "Phones, laptops and accessories at lower prices, only until Sunday midnight.",
+        "cta": "See the deals"
+      },
+      "laptops": {
+        "eyebrow": "New in",
+        "title": "Laptops for work and school",
+        "text": "Light, fast and ready for a full day of work.",
+        "cta": "See laptops"
+      },
+      "phones": {
+        "eyebrow": "Interest-free installments",
+        "title": "A new phone in up to {count} installments",
+        "text": "Pay for your phone in installments, with no interest and no fees.",
+        "cta": "See phones"
+      }
+    },
+    "discountSticker": "up to −{percent}%",
+    "services": {
+      "label": "Why shop with us",
+      "shipping": {
+        "title": "Free delivery",
+        "text": "On orders from {amount}"
+      },
+      "installments": {
+        "title": "Interest-free installments",
+        "text": "Up to {count} installments by card"
+      },
+      "support": {
+        "title": "Expert support",
+        "text": "Call {phone}, weekdays 8am–8pm"
+      }
+    },
+    "categories": "Categories",
+    "allCategories": "All products",
+    "deals": "Deals of the week",
+    "allDeals": "All deals",
+    "endsIn": "Ends in",
+    "countdown": {
+      "days": "days",
+      "hours": "hours",
+      "minutes": "min",
+      "seconds": "sec",
+      "label": "{days} d {hours} h {minutes} min until the deals end"
+    },
+    "dealsOver": "This week's deals have ended. New ones start on Monday.",
+    "topRated": "Top rated",
+    "viewAll": "View all",
+    "promos": {
+      "accessories": {
+        "title": "Phone accessories",
+        "text": "Chargers, cases and headphones for every day.",
+        "cta": "See the offer"
+      },
+      "watches": {
+        "title": "Watches",
+        "text": "Classic and smart watches for every occasion.",
+        "cta": "See the offer"
+      }
+    }
+  },
   "filters": {
     "title": "Filters",
     "open": "Filters",
