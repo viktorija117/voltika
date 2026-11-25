@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest'
 
-import { SUPPORTED_LOCALES } from '@/config/i18n'
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/config/i18n'
+import i18n from '@/locales'
 import en from '@/locales/en.json'
 import sr from '@/locales/sr.json'
 
-const messages = { sr, en }
+const messages = { [DEFAULT_LOCALE]: sr, en }
 
 // Turns { pages: { home: { title } } } into ['pages.home.title'].
 function flattenKeys(object, prefix = '') {
@@ -30,5 +31,12 @@ describe('locale files', () => {
         expect(value.trim(), `${locale}: ${key}`).not.toBe('')
       }
     }
+  })
+})
+
+describe('Serbian formats', () => {
+  it('writes dates in Latin script', () => {
+    const { d } = i18n.global
+    expect(d(new Date('2025-04-30T09:41:02Z'), 'review')).toBe('30. april 2025.')
   })
 })
