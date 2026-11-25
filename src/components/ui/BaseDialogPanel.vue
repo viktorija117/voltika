@@ -52,33 +52,36 @@ function handleClick(event) {
 </script>
 
 <template>
+  <!--
+    The open dialog is itself the flex column (header, scrolling body, footer). A wrapper with
+    height: 100% would resolve to 0px in Safari, whose modal dialogs are fit-content tall.
+    `open:` keeps the closed dialog hidden by the browser's own display: none.
+  -->
   <dialog
     ref="dialog"
     :aria-labelledby="titleId"
     :class="[
-      'bg-bg-surface p-0 text-text-default backdrop:bg-bg-inverse/50',
+      'bg-bg-surface p-0 text-text-default backdrop:bg-bg-inverse/50 open:flex open:flex-col',
       'transition-[translate,opacity,overlay,display] transition-discrete duration-200 motion-reduce:transition-none',
       POSITION_CLASSES[position],
     ]"
     @close="close"
     @click="handleClick"
   >
-    <div class="flex h-full max-h-[inherit] flex-col">
-      <div class="flex items-center justify-between border-b border-border-subtle p-4">
-        <h2 :id="titleId" class="font-heading text-xl font-bold">{{ title }}</h2>
-        <button
-          type="button"
-          :aria-label="closeLabel"
-          class="flex size-11 items-center justify-center rounded-md hover:bg-bg-subtle"
-          @click="close"
-        >
-          <X :size="24" aria-hidden="true" />
-        </button>
-      </div>
-      <div class="flex-1 overflow-y-auto p-4"><slot /></div>
-      <div v-if="$slots.footer" class="border-t border-border-subtle p-4">
-        <slot name="footer" />
-      </div>
+    <div class="flex shrink-0 items-center justify-between border-b border-border-subtle p-4">
+      <h2 :id="titleId" class="font-heading text-xl font-bold">{{ title }}</h2>
+      <button
+        type="button"
+        :aria-label="closeLabel"
+        class="flex size-11 items-center justify-center rounded-md hover:bg-bg-subtle"
+        @click="close"
+      >
+        <X :size="24" aria-hidden="true" />
+      </button>
+    </div>
+    <div class="min-h-0 flex-auto overflow-y-auto p-4"><slot /></div>
+    <div v-if="$slots.footer" class="shrink-0 border-t border-border-subtle p-4">
+      <slot name="footer" />
     </div>
   </dialog>
 </template>
