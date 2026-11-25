@@ -60,8 +60,8 @@ describe('HomeView', () => {
     const wrapper = await mountHome()
     const firstSlide = wrapper.findAll('[aria-roledescription="slide"]')[0]
 
-    expect(firstSlide.get('img').attributes('alt')).toBe('Laptop')
-    expect(firstSlide.get('img').attributes('fetchpriority')).toBe('high')
+    expect(firstSlide.find('img[alt="Laptop"]').exists()).toBe(true)
+    expect(firstSlide.get('img[alt="Laptop"]').attributes('fetchpriority')).toBe('high')
     expect(firstSlide.text()).toContain('-19%')
     expect(firstSlide.text()).toContain('Na slici: Laptop')
   })
