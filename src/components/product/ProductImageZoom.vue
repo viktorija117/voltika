@@ -1,10 +1,9 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 
-import BaseDialogPanel from '@/components/ui/BaseDialogPanel.vue'
+import { PRODUCT_IMAGE_SIZE } from '@/config/catalog'
 
-// Full-size API images are 1000x1000.
-const IMAGE_SIZE = 1000
+import BaseDialogPanel from '@/components/ui/BaseDialogPanel.vue'
 
 defineProps({
   open: { type: Boolean, default: false },
@@ -28,8 +27,8 @@ const { t } = useI18n()
     <img
       :src="src"
       :alt="name"
-      :width="IMAGE_SIZE"
-      :height="IMAGE_SIZE"
+      :width="PRODUCT_IMAGE_SIZE"
+      :height="PRODUCT_IMAGE_SIZE"
       decoding="async"
       class="mx-auto max-h-[70dvh] w-auto object-contain"
     />

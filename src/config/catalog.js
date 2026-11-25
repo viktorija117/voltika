@@ -54,3 +54,6 @@ export const NAV_CATEGORIES = [
   { slug: 'mobile-accessories', labelKey: 'categories.accessories' },
   { slug: 'mens-watches', labelKey: 'categories.watches' },
 ]
+
+/** Full-size product photos from the API are square, this many pixels per side. */
+export const PRODUCT_IMAGE_SIZE = 1000

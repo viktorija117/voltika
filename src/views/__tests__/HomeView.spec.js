@@ -56,10 +56,14 @@ describe('HomeView', () => {
     expect(shelfNames(wrapper, 'home-top-rated')).toEqual(['Sat', 'Telefon', 'Laptop'])
   })
 
-  it('puts the biggest real discount on the hero sticker', async () => {
+  it('shows the biggest deal on the first hero slide, with its photo and discount', async () => {
     const wrapper = await mountHome()
+    const firstSlide = wrapper.findAll('[aria-roledescription="slide"]')[0]
 
-    expect(wrapper.text()).toContain('do −19%')
+    expect(firstSlide.get('img').attributes('alt')).toBe('Laptop')
+    expect(firstSlide.get('img').attributes('fetchpriority')).toBe('high')
+    expect(firstSlide.text()).toContain('-19%')
+    expect(firstSlide.text()).toContain('Na slici: Laptop')
   })
 
   it('links every category to the product list', async () => {
