@@ -13,16 +13,16 @@ const i18n = createI18n({
   legacy: false,
   locale: DEFAULT_LOCALE,
   fallbackLocale: DEFAULT_LOCALE,
-  messages: { sr, en },
-  pluralRules: { sr: serbianPlural },
+  messages: { [DEFAULT_LOCALE]: sr, en },
+  pluralRules: { [DEFAULT_LOCALE]: serbianPlural },
   // n(4.5, 'rating') -> "4,5" in Serbian, "4.5" in English.
   numberFormats: {
-    sr: { rating: { minimumFractionDigits: 1, maximumFractionDigits: 1 } },
+    [DEFAULT_LOCALE]: { rating: { minimumFractionDigits: 1, maximumFractionDigits: 1 } },
     en: { rating: { minimumFractionDigits: 1, maximumFractionDigits: 1 } },
   },
   // d(date, 'review') -> "30. april 2025." in Serbian, "April 30, 2025" in English.
   datetimeFormats: {
-    sr: { review: { dateStyle: 'long' } },
+    [DEFAULT_LOCALE]: { review: { dateStyle: 'long' } },
     en: { review: { dateStyle: 'long' } },
   },
 })
