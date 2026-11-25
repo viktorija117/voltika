@@ -87,7 +87,26 @@
     "notFoundTitle": "Proizvod nije pronađen",
     "notFoundDescription": "Proizvod ne postoji ili više nije u ponudi.",
     "errorTitle": "Proizvod se nije učitao",
-    "loading": "Učitavanje proizvoda…"
+    "loading": "Učitavanje proizvoda…",
+    "terms": {
+      "units": {
+        "day": "{amount} dana | {amount} dan | {amount} dana | {amount} dana",
+        "businessDay": "{amount} radnih dana | {amount} radni dan | {amount} radna dana | {amount} radnih dana",
+        "week": "{amount} nedelja | {amount} nedelja | {amount} nedelje | {amount} nedelja",
+        "month": "{amount} meseci | {amount} mesec | {amount} meseca | {amount} meseci",
+        "year": "{amount} godina | {amount} godina | {amount} godine | {amount} godina"
+      },
+      "shipping": {
+        "overnight": "Sledećeg dana"
+      },
+      "warranty": {
+        "none": "Bez garancije",
+        "lifetime": "Doživotna"
+      },
+      "returnPolicy": {
+        "none": "Bez povraćaja"
+      }
+    }
   },
   "breadcrumbs": {
     "label": "Putanja",

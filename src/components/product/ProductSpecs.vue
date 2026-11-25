@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { categoryLabelKey } from '@/utils/categories'
+import { formatServiceTerm } from '@/utils/serviceTerms'
 
 const props = defineProps({
   /** @type {import('vue').PropType<import('@/services/productMapper').ProductDetails>} */
@@ -18,9 +19,12 @@ const rows = computed(() => {
     { key: 'brand', value: props.product.brand },
     { key: 'category', value: labelKey ? t(labelKey) : props.product.category },
     { key: 'sku', value: props.product.sku },
-    { key: 'warranty', value: props.product.warranty },
-    { key: 'shipping', value: props.product.shipping },
-    { key: 'returnPolicy', value: props.product.returnPolicy },
+    { key: 'warranty', value: formatServiceTerm(props.product.warranty, 'warranty', t) },
+    { key: 'shipping', value: formatServiceTerm(props.product.shipping, 'shipping', t) },
+    {
+      key: 'returnPolicy',
+      value: formatServiceTerm(props.product.returnPolicy, 'returnPolicy', t),
+    },
   ].filter((row) => row.value)
 })
 </script>

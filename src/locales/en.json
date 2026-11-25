@@ -87,7 +87,26 @@
     "notFoundTitle": "Product not found",
     "notFoundDescription": "The product does not exist or is no longer available.",
     "errorTitle": "The product could not be loaded",
-    "loading": "Loading product…"
+    "loading": "Loading product…",
+    "terms": {
+      "units": {
+        "day": "{amount} days | {amount} day | {amount} days",
+        "businessDay": "{amount} business days | {amount} business day | {amount} business days",
+        "week": "{amount} weeks | {amount} week | {amount} weeks",
+        "month": "{amount} months | {amount} month | {amount} months",
+        "year": "{amount} years | {amount} year | {amount} years"
+      },
+      "shipping": {
+        "overnight": "Next day"
+      },
+      "warranty": {
+        "none": "No warranty",
+        "lifetime": "Lifetime"
+      },
+      "returnPolicy": {
+        "none": "No returns"
+      }
+    }
   },
   "breadcrumbs": {
     "label": "Breadcrumb",

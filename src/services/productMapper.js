@@ -1,6 +1,9 @@
 import { LOW_STOCK_THRESHOLD } from '@/config/catalog'
 import { MIN_SALE_DISCOUNT_PERCENT } from '@/config/pricing'
+import { parseReturnPolicy, parseShipping, parseWarranty } from '@/services/serviceTermParser'
 import { usdToRsd } from '@/utils/price'
+
+/** @typedef {import('@/services/serviceTermParser').ServiceTerm} ServiceTerm */
 
 /** @typedef {'inStock' | 'lowStock' | 'outOfStock'} StockStatus */
 
@@ -79,9 +82,9 @@ export function toProduct(raw) {
 
 /**
  * @typedef {Product & {
- *   warranty: string,
- *   shipping: string,
- *   returnPolicy: string,
+ *   warranty: ServiceTerm | null,
+ *   shipping: ServiceTerm | null,
+ *   returnPolicy: ServiceTerm | null,
  *   reviews: Review[],
  * }} ProductDetails
  */
@@ -103,9 +106,9 @@ function toReview(raw) {
 export function toProductDetails(raw) {
   return {
     ...toProduct(raw),
-    warranty: raw.warrantyInformation ?? '',
-    shipping: raw.shippingInformation ?? '',
-    returnPolicy: raw.returnPolicy ?? '',
+    warranty: parseWarranty(raw.warrantyInformation),
+    shipping: parseShipping(raw.shippingInformation),
+    returnPolicy: parseReturnPolicy(raw.returnPolicy),
     reviews: Array.isArray(raw.reviews) ? raw.reviews.map(toReview) : [],
   }
 }
