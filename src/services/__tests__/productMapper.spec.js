@@ -105,9 +105,9 @@ describe('toProductDetails', () => {
     expect(details).toMatchObject({
       id: 1,
       name: 'Slušalice',
-      warranty: '1 year warranty',
-      shipping: 'Ships in 2 days',
-      returnPolicy: '30 days return policy',
+      warranty: { kind: 'period', min: 1, max: 1, unit: 'year' },
+      shipping: { kind: 'period', min: 2, max: 2, unit: 'day' },
+      returnPolicy: { kind: 'period', min: 30, max: 30, unit: 'day' },
       reviewCount: 1,
     })
     // The reviewer's email is not needed, so it is not kept.
@@ -118,9 +118,9 @@ describe('toProductDetails', () => {
 
   it('falls back to empty values when the API leaves fields out', () => {
     expect(toProductDetails({ id: 2 })).toMatchObject({
-      warranty: '',
-      shipping: '',
-      returnPolicy: '',
+      warranty: null,
+      shipping: null,
+      returnPolicy: null,
       reviews: [],
     })
   })

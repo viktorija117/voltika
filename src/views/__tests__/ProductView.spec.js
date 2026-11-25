@@ -17,9 +17,9 @@ const PRODUCT = {
     price: 24000,
     images: ['https://cdn.example/1.webp'],
   }),
-  warranty: '1 year warranty',
-  shipping: 'Ships in 2 days',
-  returnPolicy: '30 days return policy',
+  warranty: { kind: 'period', min: 1, max: 1, unit: 'year' },
+  shipping: { kind: 'period', min: 2, max: 2, unit: 'day' },
+  returnPolicy: { kind: 'period', min: 30, max: 30, unit: 'day' },
   reviews: [{ rating: 5, comment: 'Odlično!', author: 'Ana', date: '2025-04-30T09:41:02.053Z' }],
 }
 
@@ -48,7 +48,7 @@ describe('ProductView', () => {
     expect(wrapper.get('h1').text()).toBe('Bežične slušalice')
     expect(wrapper.text()).toContain('24.000')
     expect(wrapper.text()).toContain('ili 24 × 1.000')
-    expect(wrapper.text()).toContain('Ships in 2 days')
+    expect(wrapper.text()).toContain('Dostava2 dana')
   })
 
   it('shows breadcrumbs from home through the category to the product', async () => {

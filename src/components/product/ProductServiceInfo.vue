@@ -3,10 +3,13 @@ import { RotateCcw, ShieldCheck, Truck } from 'lucide-vue-next'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { formatServiceTerm } from '@/utils/serviceTerms'
+
+// Parsed terms from the product (see services/serviceTermParser); null when unknown.
 const props = defineProps({
-  shipping: { type: String, default: '' },
-  warranty: { type: String, default: '' },
-  returnPolicy: { type: String, default: '' },
+  shipping: { type: Object, default: null },
+  warranty: { type: Object, default: null },
+  returnPolicy: { type: Object, default: null },
 })
 
 const { t } = useI18n()
@@ -14,9 +17,17 @@ const { t } = useI18n()
 // Rows without data from the API are left out instead of showing an empty value.
 const rows = computed(() =>
   [
-    { key: 'shipping', icon: Truck, value: props.shipping },
-    { key: 'warranty', icon: ShieldCheck, value: props.warranty },
-    { key: 'returns', icon: RotateCcw, value: props.returnPolicy },
+    { key: 'shipping', icon: Truck, value: formatServiceTerm(props.shipping, 'shipping', t) },
+    {
+      key: 'warranty',
+      icon: ShieldCheck,
+      value: formatServiceTerm(props.warranty, 'warranty', t),
+    },
+    {
+      key: 'returns',
+      icon: RotateCcw,
+      value: formatServiceTerm(props.returnPolicy, 'returnPolicy', t),
+    },
   ].filter((row) => row.value),
 )
 </script>
