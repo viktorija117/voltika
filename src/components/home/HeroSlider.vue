@@ -9,9 +9,8 @@ import { HERO_AUTOPLAY_MS } from '@/config/home'
 import HeroSlide from '@/components/home/HeroSlide.vue'
 
 const props = defineProps({
-  /** @type {import('vue').PropType<typeof import('@/components/home/heroSlides').HERO_SLIDES>} */
+  /** HERO_SLIDES entries, each with its featured `product` (null while loading). */
   slides: { type: Array, required: true },
-  maxDiscount: { type: Number, default: null },
 })
 
 const { t } = useI18n()
@@ -81,7 +80,7 @@ const CONTROL_CLASS =
           index === current ? 'visible opacity-100' : 'invisible opacity-0',
         ]"
       >
-        <HeroSlide :slide="slide" :max-discount="maxDiscount" />
+        <HeroSlide :slide="slide" :product="slide.product" :is-first="index === 0" />
       </div>
     </div>
 

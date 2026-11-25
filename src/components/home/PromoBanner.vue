@@ -8,9 +8,13 @@ const VARIANT_CLASSES = {
 
 <script setup>
 import { ArrowRight } from 'lucide-vue-next'
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
-defineProps({
+import { PRODUCT_IMAGE_SIZE } from '@/config/catalog'
+import { mainProductImage } from '@/utils/productImage'
+
+const props = defineProps({
   variant: {
     type: String,
     default: 'brand',
@@ -20,12 +24,11 @@ defineProps({
   text: { type: String, required: true },
   linkLabel: { type: String, required: true },
   to: { type: [String, Object], required: true },
-  /** Decorative lucide icons drawn as tiles on the right. */
-  icons: { type: Array, default: () => [] },
+  /** Product photographed on the right; null while the catalog loads. */
+  product: { type: Object, default: null },
 })
 
-// On phones only the first icon fits next to the text.
-const TILE_CLASSES = ['right-4 bottom-6 rotate-6', 'hidden sm:flex top-6 right-24 -rotate-6']
+const image = computed(() => mainProductImage(props.product))
 </script>
 
 <template>
@@ -43,16 +46,20 @@ const TILE_CLASSES = ['right-4 bottom-6 rotate-6', 'hidden sm:flex top-6 right-2
       {{ linkLabel }}
       <ArrowRight :size="16" aria-hidden="true" />
     </span>
+    <!-- Decorative: the banner's link text already names the offer. -->
     <span
-      v-for="(icon, index) in icons"
-      :key="index"
       aria-hidden="true"
-      :class="[
-        'absolute -z-10 flex size-20 items-center justify-center rounded-lg border border-border-strong bg-bg-surface/80 text-text-default shadow-lg backdrop-blur-md lg:size-24',
-        TILE_CLASSES[index],
-      ]"
-    >
-      <component :is="icon" class="size-9 lg:size-11" :stroke-width="1.5" />
-    </span>
+      class="absolute -right-10 -bottom-16 -z-10 size-56 rounded-full bg-holo opacity-30 blur-3xl lg:size-72"
+    />
+    <img
+      v-if="image"
+      :src="image"
+      alt=""
+      :width="PRODUCT_IMAGE_SIZE"
+      :height="PRODUCT_IMAGE_SIZE"
+      loading="lazy"
+      decoding="async"
+      class="absolute -right-4 -bottom-6 -z-10 h-[90%] w-auto max-w-[50%] object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none lg:-right-2 lg:h-[105%]"
+    />
   </RouterLink>
 </template>

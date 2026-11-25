@@ -241,7 +241,6 @@
         "cta": "See phones"
       }
     },
-    "discountSticker": "up to −{percent}%",
     "services": {
       "label": "Why shop with us",
       "shipping": {
@@ -283,7 +282,10 @@
         "text": "Classic and smart watches for every occasion.",
         "cta": "See the offer"
       }
-    }
+    },
+    "priceFrom": "from {price}",
+    "priceInstallments": "{count} × {amount} a month",
+    "productCaption": "Pictured: {name}"
   },
   "filters": {
     "title": "Filters",

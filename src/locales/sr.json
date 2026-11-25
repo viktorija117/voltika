@@ -241,7 +241,6 @@
         "cta": "Pogledaj telefone"
       }
     },
-    "discountSticker": "do −{percent}%",
     "services": {
       "label": "Prednosti kupovine",
       "shipping": {
@@ -283,7 +282,10 @@
         "text": "Klasični i pametni satovi za svaku priliku.",
         "cta": "Pogledaj ponudu"
       }
-    }
+    },
+    "priceFrom": "od {price}",
+    "priceInstallments": "{count} × {amount} mesečno",
+    "productCaption": "Na slici: {name}"
   },
   "filters": {
     "title": "Filteri",

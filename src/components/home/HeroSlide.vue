@@ -1,54 +1,81 @@
 <script setup>
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { PRODUCT_IMAGE_SIZE } from '@/config/catalog'
+import { INSTALLMENT_COUNT } from '@/config/pricing'
+import { formatPrice, installmentAmount } from '@/utils/price'
+import { mainProductImage } from '@/utils/productImage'
+
+import PriceTag from '@/components/product/PriceTag.vue'
+import BaseBadge from '@/components/ui/BaseBadge.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 
-defineProps({
+const props = defineProps({
   /** One entry of HERO_SLIDES. */
   slide: { type: Object, required: true },
-  /** Biggest discount in the catalog, for the sticker; null while it is unknown. */
-  maxDiscount: { type: Number, default: null },
+  /** The featured product; null while the catalog loads. */
+  product: { type: Object, default: null },
+  /**
+   * The first slide's photo is the largest thing on the page and loads first. The others load
+   * right after with low priority: a lazy image on a hidden slide would only start when shown.
+   */
+  isFirst: { type: Boolean, default: false },
 })
 
 const { t } = useI18n()
 
-// Positions of the four glass icon tiles on desktop (only the first two show on mobile).
-const TILE_CLASSES = [
-  'right-28 bottom-8 -rotate-6 lg:top-16 lg:right-72 lg:bottom-auto',
-  'right-6 bottom-20 rotate-6 lg:top-36 lg:right-28 lg:bottom-auto',
-  'hidden lg:flex lg:right-80 lg:bottom-10 lg:rotate-3',
-  'hidden lg:flex lg:right-40 lg:bottom-6 lg:-rotate-6',
-]
+const image = computed(() => mainProductImage(props.product))
+const isDealPrice = computed(() => props.slide.priceStyle === 'deal')
+const hasDiscountBadge = computed(() => isDealPrice.value && props.product?.discountPercent > 0)
+
+// One-line price for the `from` and `installments` styles; `deal` uses PriceTag instead.
+const priceLine = computed(() => {
+  if (!props.product || isDealPrice.value) return ''
+  const { price } = props.product
+  if (props.slide.priceStyle === 'from') return t('home.priceFrom', { price: formatPrice(price) })
+  return t('home.priceInstallments', {
+    count: INSTALLMENT_COUNT,
+    amount: formatPrice(installmentAmount(price, INSTALLMENT_COUNT)),
+  })
+})
 </script>
 
 <template>
   <div
-    class="relative isolate flex min-h-[27.5rem] overflow-hidden rounded-lg border border-border-subtle bg-spotlight lg:min-h-[26rem] lg:items-center"
+    class="relative isolate grid overflow-hidden rounded-lg border border-border-subtle bg-spotlight lg:min-h-[26rem] lg:grid-cols-2"
   >
-    <!-- Decorative layer: holographic glow, glass icon tiles and the discount sticker. -->
-    <div aria-hidden="true" class="absolute inset-0 -z-10">
+    <!-- The product stands on soft holographic light, like a studio shot. -->
+    <figure class="relative flex h-64 items-center justify-center lg:order-last lg:h-auto lg:p-10">
       <span
-        class="absolute -right-16 -bottom-24 size-72 rounded-full bg-holo opacity-40 blur-3xl lg:-top-24 lg:right-0 lg:bottom-auto lg:size-[30rem]"
+        aria-hidden="true"
+        class="absolute size-60 rounded-full bg-holo opacity-30 blur-3xl lg:size-96"
       />
       <span
-        v-for="(icon, index) in slide.icons"
-        :key="index"
-        :class="[
-          'absolute flex size-20 items-center justify-center rounded-lg border border-border-strong bg-bg-surface/70 text-text-default shadow-lg backdrop-blur-md lg:size-28',
-          TILE_CLASSES[index],
-        ]"
+        aria-hidden="true"
+        class="absolute bottom-6 h-5 w-2/5 rounded-full bg-bg-inverse/80 blur-lg lg:bottom-12"
+      />
+      <img
+        v-if="image"
+        :src="image"
+        :alt="product.name"
+        :width="PRODUCT_IMAGE_SIZE"
+        :height="PRODUCT_IMAGE_SIZE"
+        loading="eager"
+        :fetchpriority="isFirst ? 'high' : 'low'"
+        decoding="async"
+        class="relative max-h-56 w-auto object-contain drop-shadow-2xl lg:max-h-80"
+      />
+      <BaseBadge
+        v-if="hasDiscountBadge"
+        variant="sale"
+        class="absolute top-5 right-5 px-3 py-1.5 text-base lg:top-10 lg:right-10"
       >
-        <component :is="icon" class="size-9 lg:size-12" :stroke-width="1.5" />
-      </span>
-      <span
-        v-if="slide.showDiscount && maxDiscount"
-        class="absolute bottom-8 left-6 flex size-20 -rotate-12 items-center justify-center rounded-full bg-holo p-2 text-center font-heading text-sm leading-tight font-bold text-text-on-accent shadow-lg lg:top-10 lg:right-12 lg:bottom-auto lg:left-auto lg:size-28 lg:text-xl"
-      >
-        {{ t('home.discountSticker', { percent: maxDiscount }) }}
-      </span>
-    </div>
+        {{ t('product.discount', { percent: product.discountPercent }) }}
+      </BaseBadge>
+    </figure>
 
-    <div class="flex max-w-xl flex-col items-start gap-4 p-6 lg:gap-5 lg:p-14">
+    <div class="flex flex-col items-start gap-4 p-6 pt-0 lg:justify-center lg:gap-5 lg:p-14">
       <p class="text-holo text-xs font-semibold tracking-[0.14em] uppercase">
         {{ t(`home.slides.${slide.id}.eyebrow`) }}
       </p>
@@ -58,9 +85,21 @@ const TILE_CLASSES = [
       <p class="max-w-md text-text-muted">
         {{ t(`home.slides.${slide.id}.text`, slide.textParams ?? {}) }}
       </p>
+      <template v-if="product">
+        <PriceTag
+          v-if="isDealPrice"
+          :price="product.price"
+          :old-price="product.oldPrice"
+          :savings="product.savings"
+        />
+        <p v-else class="font-heading text-xl font-semibold">{{ priceLine }}</p>
+      </template>
       <BaseButton :to="slide.to" variant="accent">{{
         t(`home.slides.${slide.id}.cta`)
       }}</BaseButton>
+      <p v-if="product" class="text-xs text-text-muted">
+        {{ t('home.productCaption', { name: product.name }) }}
+      </p>
     </div>
   </div>
 </template>

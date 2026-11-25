@@ -7,6 +7,7 @@ import {
   findDeals,
   findSimilarProducts,
   findTopRated,
+  pickFeaturedProduct,
   sortProducts,
 } from '@/utils/productFilters'
 
@@ -161,5 +162,26 @@ describe('findTopRated', () => {
     ]
 
     expect(findTopRated(products, 2).map((product) => product.id)).toEqual([2, 3])
+  })
+})
+
+describe('pickFeaturedProduct', () => {
+  const products = [
+    makeProduct({ id: 1, category: 'laptops', rating: 4.9, discountPercent: 5 }),
+    makeProduct({ id: 2, category: 'laptops', rating: 4.2, discountPercent: 18 }),
+    makeProduct({ id: 3, category: 'laptops', rating: 5, stockStatus: 'outOfStock' }),
+    makeProduct({ id: 4, category: 'tablets', rating: 3, discountPercent: 25 }),
+  ]
+
+  it('picks the biggest deal', () => {
+    expect(pickFeaturedProduct(products, { kind: 'deal' }).id).toBe(4)
+  })
+
+  it('picks the best rated product in a category, skipping ones out of stock', () => {
+    expect(pickFeaturedProduct(products, { kind: 'topRated', category: 'laptops' }).id).toBe(1)
+  })
+
+  it('returns null while there are no products', () => {
+    expect(pickFeaturedProduct([], { kind: 'deal' })).toBeNull()
   })
 })

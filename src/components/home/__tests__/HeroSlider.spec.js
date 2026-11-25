@@ -16,7 +16,7 @@ function stubReducedMotion(matches) {
 
 async function mountSlider() {
   const { wrapper } = mountWithApp(HeroSlider, {
-    props: { slides: HERO_SLIDES, maxDiscount: 19 },
+    props: { slides: HERO_SLIDES.map((slide) => ({ ...slide, product: null })) },
     attachTo: document.body,
   })
   await nextTick()

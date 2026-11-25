@@ -1,5 +1,4 @@
 <script setup>
-import { Headphones, Smartphone, Watch } from 'lucide-vue-next'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -8,7 +7,7 @@ import { useSeo } from '@/composables/useSeo'
 import { HOME_SHELF_SIZE } from '@/config/home'
 import { useCatalogStore } from '@/stores/catalog'
 import { buildFilterQuery, EMPTY_FILTERS } from '@/utils/filterQuery'
-import { findDeals, findTopRated } from '@/utils/productFilters'
+import { findDeals, findTopRated, pickFeaturedProduct } from '@/utils/productFilters'
 import { DEALS_SECTION_ID, productListRoute } from '@/utils/routes'
 
 import CategoryTiles from '@/components/home/CategoryTiles.vue'
@@ -29,8 +28,20 @@ useSeo(() => ({ description: t('seo.home') }))
 const isPending = computed(() => catalog.status === 'idle' || catalog.isLoading)
 const deals = computed(() => findDeals(catalog.products, HOME_SHELF_SIZE))
 const topRated = computed(() => findTopRated(catalog.products, HOME_SHELF_SIZE))
-// Deals are sorted by discount, so the first one has the biggest.
-const maxDiscount = computed(() => deals.value[0]?.discountPercent ?? null)
+// Every banner shows a real product from the catalog, picked by the banner's rule.
+const heroSlides = computed(() =>
+  HERO_SLIDES.map((slide) => ({
+    ...slide,
+    product: pickFeaturedProduct(catalog.products, slide.featured),
+  })),
+)
+const promoProducts = computed(() => ({
+  accessories: pickFeaturedProduct(catalog.products, {
+    kind: 'topRated',
+    category: 'mobile-accessories',
+  }),
+  watches: pickFeaturedProduct(catalog.products, { kind: 'topRated', category: 'mens-watches' }),
+}))
 
 const allDealsRoute = {
   name: 'products',
@@ -42,7 +53,7 @@ const allDealsRoute = {
   <h1 class="sr-only">{{ t('home.title') }}</h1>
 
   <div class="flex flex-col gap-10 lg:gap-16">
-    <HeroSlider :slides="HERO_SLIDES" :max-discount="maxDiscount" />
+    <HeroSlider :slides="heroSlides" />
 
     <ServiceTiles />
 
@@ -84,7 +95,7 @@ const allDealsRoute = {
         :text="t('home.promos.accessories.text')"
         :link-label="t('home.promos.accessories.cta')"
         :to="productListRoute({ category: 'mobile-accessories' })"
-        :icons="[Headphones, Smartphone]"
+        :product="promoProducts.accessories"
       />
       <PromoBanner
         variant="accent"
@@ -92,7 +103,7 @@ const allDealsRoute = {
         :text="t('home.promos.watches.text')"
         :link-label="t('home.promos.watches.cta')"
         :to="productListRoute({ category: 'mens-watches' })"
-        :icons="[Watch, Smartphone]"
+        :product="promoProducts.watches"
       />
     </div>
 

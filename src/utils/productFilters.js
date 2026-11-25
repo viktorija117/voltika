@@ -109,3 +109,19 @@ export function findDeals(products, count) {
 export function findTopRated(products, count) {
   return sortProducts(products, 'popular').slice(0, count)
 }
+
+/**
+ * The product a banner shows: the biggest deal or the best rated product, optionally
+ * from one category, and never one that is out of stock.
+ * @param {import('@/services/productMapper').Product[]} products
+ * @param {{ kind: 'deal' | 'topRated', category?: string }} rule
+ * @returns {import('@/services/productMapper').Product | null} Null while the catalog is empty.
+ */
+export function pickFeaturedProduct(products, { kind, category }) {
+  const pool = products.filter(
+    (product) =>
+      product.stockStatus !== 'outOfStock' && (!category || product.category === category),
+  )
+  const [featured] = kind === 'deal' ? findDeals(pool, 1) : findTopRated(pool, 1)
+  return featured ?? null
+}

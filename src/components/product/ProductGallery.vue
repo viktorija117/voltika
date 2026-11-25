@@ -3,6 +3,7 @@ import { ImageOff, ZoomIn } from 'lucide-vue-next'
 import { computed, defineAsyncComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { PRODUCT_IMAGE_SIZE } from '@/config/catalog'
 import { nextIndexForKey } from '@/utils/keyboard'
 
 // The zoom dialog is loaded on the first click only; most visitors never open it.
@@ -10,8 +11,7 @@ const ProductImageZoom = defineAsyncComponent(
   () => import('@/components/product/ProductImageZoom.vue'),
 )
 
-// Full-size API images are 1000x1000, thumbnails are shown at 64px.
-const IMAGE_SIZE = 1000
+// Thumbnails are shown at 64px.
 const THUMBNAIL_SIZE = 64
 
 const props = defineProps({
@@ -58,8 +58,8 @@ function handleThumbnailKeydown(event) {
       <img
         :src="selectedImage"
         :alt="name"
-        :width="IMAGE_SIZE"
-        :height="IMAGE_SIZE"
+        :width="PRODUCT_IMAGE_SIZE"
+        :height="PRODUCT_IMAGE_SIZE"
         fetchpriority="high"
         class="size-full object-contain p-6"
       />
