@@ -53,7 +53,7 @@ const allDealsRoute = {
   <h1 class="sr-only">{{ t('home.title') }}</h1>
 
   <div class="flex flex-col gap-10 lg:gap-16">
-    <HeroSlider :slides="heroSlides" />
+    <HeroSlider :slides="heroSlides" :is-pending="isPending" />
 
     <ServiceTiles />
 

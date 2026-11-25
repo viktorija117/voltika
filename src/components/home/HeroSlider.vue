@@ -11,6 +11,8 @@ import HeroSlide from '@/components/home/HeroSlide.vue'
 const props = defineProps({
   /** HERO_SLIDES entries, each with its featured `product` (null while loading). */
   slides: { type: Array, required: true },
+  /** True while the catalog loads; passed on to every slide. */
+  isPending: { type: Boolean, default: false },
 })
 
 const { t } = useI18n()
@@ -80,7 +82,12 @@ const CONTROL_CLASS =
           index === current ? 'visible opacity-100' : 'invisible opacity-0',
         ]"
       >
-        <HeroSlide :slide="slide" :product="slide.product" :is-first="index === 0" />
+        <HeroSlide
+          :slide="slide"
+          :product="slide.product"
+          :is-pending="isPending"
+          :is-first="index === 0"
+        />
       </div>
     </div>
 

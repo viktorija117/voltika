@@ -1,10 +1,13 @@
 import { createPinia, setActivePinia } from 'pinia'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { createMemoryHistory, createRouter } from 'vue-router'
 
 import { makeProduct } from '@/__tests__/helpers'
-import { routes, scrollBehavior } from '@/router'
+import { preloadCatalog, routes, scrollBehavior } from '@/router'
+import { getCatalog } from '@/services/productService'
 import { useCartStore } from '@/stores/cart'
+
+vi.mock('@/services/productService', () => ({ getCatalog: vi.fn(() => Promise.resolve([])) }))
 
 const router = createRouter({ history: createMemoryHistory(), routes })
 
@@ -74,5 +77,23 @@ describe('checkout guard', () => {
 
   it('opens the checkout when the cart has items', async () => {
     expect(await visitCheckout({ withItems: true })).toBe('checkout')
+  })
+})
+
+describe('preloadCatalog', () => {
+  function visit(path) {
+    setActivePinia(createPinia())
+    getCatalog.mockClear()
+    preloadCatalog(router.resolve(path))
+  }
+
+  it('starts loading the catalog for pages that show products', () => {
+    visit('/proizvod/42')
+    expect(getCatalog).toHaveBeenCalledOnce()
+  })
+
+  it('does not load the catalog for the not-found page', () => {
+    visit('/ne-postoji')
+    expect(getCatalog).not.toHaveBeenCalled()
   })
 })

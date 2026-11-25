@@ -1,7 +1,9 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+// `?inline` turns the 4 KB image into a data URL, so it needs no request of its own.
+import heroStageUrl from '@/assets/banners/hero-stage.webp?inline'
 import { PRODUCT_IMAGE_SIZE } from '@/config/catalog'
 import { INSTALLMENT_COUNT } from '@/config/pricing'
 import { formatPrice, installmentAmount } from '@/utils/price'
@@ -14,8 +16,10 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 const props = defineProps({
   /** One entry of HERO_SLIDES. */
   slide: { type: Object, required: true },
-  /** The featured product; null while the catalog loads. */
+  /** The featured product; null while the catalog loads or when it failed to load. */
   product: { type: Object, default: null },
+  /** True while the catalog loads: price and caption show placeholders of the same size. */
+  isPending: { type: Boolean, default: false },
   /**
    * The first slide's photo is the largest thing on the page and loads first. The others load
    * right after with low priority: a lazy image on a hidden slide would only start when shown.
@@ -25,7 +29,15 @@ const props = defineProps({
 
 const { t } = useI18n()
 
+// Natural size of the stage image; blurred light scales to any column size without visible loss.
+const STAGE_WIDTH = 800
+const STAGE_HEIGHT = 555
+const SKELETON_CLASS = 'animate-pulse motion-reduce:animate-none'
+
 const image = computed(() => mainProductImage(props.product))
+// The photo stays hidden until it has loaded, then fades in instead of popping in half-drawn.
+const loadedImage = ref(null)
+const isPhotoLoaded = computed(() => loadedImage.value === image.value)
 const isDealPrice = computed(() => props.slide.priceStyle === 'deal')
 const hasDiscountBadge = computed(() => isDealPrice.value && props.product?.discountPercent > 0)
 
@@ -45,11 +57,19 @@ const priceLine = computed(() => {
   <div
     class="relative isolate grid overflow-hidden rounded-lg border border-border-subtle bg-spotlight lg:min-h-[26rem] lg:grid-cols-2"
   >
-    <!-- The product stands on soft holographic light, like a studio shot. -->
+    <!--
+      The product stands on soft holographic light, like a studio shot. The light is a tiny
+      image inlined in the page code, so the banner looks complete at once; the product photo
+      needs the catalog first and fades in on top of it when it arrives.
+      The image is light on black: `screen` blending drops the black and keeps only the light.
+    -->
     <figure class="relative flex h-64 items-center justify-center lg:order-last lg:h-auto lg:p-10">
-      <span
-        aria-hidden="true"
-        class="absolute size-60 rounded-full bg-holo opacity-30 blur-3xl lg:size-96"
+      <img
+        :src="heroStageUrl"
+        alt=""
+        :width="STAGE_WIDTH"
+        :height="STAGE_HEIGHT"
+        class="absolute inset-0 size-full object-cover mix-blend-screen"
       />
       <span
         aria-hidden="true"
@@ -57,6 +77,7 @@ const priceLine = computed(() => {
       />
       <img
         v-if="image"
+        :key="image"
         :src="image"
         :alt="product.name"
         :width="PRODUCT_IMAGE_SIZE"
@@ -64,7 +85,11 @@ const priceLine = computed(() => {
         loading="eager"
         :fetchpriority="isFirst ? 'high' : 'low'"
         decoding="async"
-        class="relative max-h-56 w-auto object-contain drop-shadow-2xl lg:max-h-80"
+        :class="[
+          'relative max-h-56 w-auto object-contain drop-shadow-2xl transition duration-500 ease-out motion-reduce:transition-none lg:max-h-80',
+          isPhotoLoaded ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0',
+        ]"
+        @load="loadedImage = image"
       />
       <BaseBadge
         v-if="hasDiscountBadge"
@@ -94,12 +119,26 @@ const priceLine = computed(() => {
         />
         <p v-else class="font-heading text-xl font-semibold">{{ priceLine }}</p>
       </template>
+      <!-- Same height as the price, so the button does not jump when the product arrives. -->
+      <div
+        v-else-if="isPending"
+        aria-hidden="true"
+        :class="['flex flex-col gap-1', SKELETON_CLASS]"
+      >
+        <div class="h-7 w-40 rounded-sm bg-bg-subtle" />
+        <div v-if="isDealPrice" class="h-5 w-32 rounded-sm bg-bg-subtle" />
+      </div>
       <BaseButton :to="slide.to" variant="accent">{{
         t(`home.slides.${slide.id}.cta`)
       }}</BaseButton>
       <p v-if="product" class="text-xs text-text-muted">
         {{ t('home.productCaption', { name: product.name }) }}
       </p>
+      <div
+        v-else-if="isPending"
+        aria-hidden="true"
+        :class="['h-4 w-28 rounded-sm bg-bg-subtle', SKELETON_CLASS]"
+      />
     </div>
   </div>
 </template>
