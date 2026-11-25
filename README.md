@@ -90,6 +90,14 @@ The target is WCAG 2.1 AA:
 - form errors are linked to their fields and announced, and focus moves to the first invalid field;
 - the hero slider can be paused and never moves on its own with `prefers-reduced-motion`.
 
+## Browser check
+
+A full shopping flow was run with Playwright in Chrome and WebKit (Safari's engine), on desktop
+and on an iPhone 13 emulation: home slider, search suggestions, image zoom, add to cart, filters
+(the bottom sheet on mobile), cart quantity, checkout validation and a complete order.
+The check found that Safari collapsed the image zoom and the filter sheet to zero height; that is
+fixed. Firefox has not been checked yet.
+
 ## Performance and SEO
 
 - Lazy-loaded pages and a lazy-loaded image zoom; fonts are self-hosted and preloaded.
