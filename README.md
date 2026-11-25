@@ -2,11 +2,22 @@
 
 A demo electronics web shop, built as a front-end portfolio project with Vue 3.
 
-**Live demo:** https://voltika-orcin.vercel.app
+**Live demo:** https://voltika-orcin.vercel.app  
+**Design (Figma):** [Voltika – Design](https://www.figma.com/design/728r3CfX4JCCbcoCbBNwhK/Voltika-%E2%80%93-Design):
+design system, components, wireframes, mobile and desktop mockups, and banners
 
 > **This is not a real shop.** Nothing can be bought, no order is sent and no payment is taken.
 > Product data, names and photos come from the public [DummyJSON](https://dummyjson.com) test API
 > and belong to their respective owners. Prices are converted to Serbian dinars (RSD) for the demo.
+
+## Screenshots
+
+| Page         | Desktop (1440 px)                                                                             | Mobile (390 px)                                                                           |
+| ------------ | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Home         | <img src="docs/screenshots/home-desktop.webp" alt="Home page" width="560">                    | <img src="docs/screenshots/home-mobile.webp" alt="Home page on mobile" width="180">       |
+| Product list | <img src="docs/screenshots/product-list-desktop.webp" alt="Laptops with filters" width="560"> | <img src="docs/screenshots/product-list-mobile.webp" alt="Laptops on mobile" width="180"> |
+| Product      | <img src="docs/screenshots/product-desktop.webp" alt="Product page" width="560">              | <img src="docs/screenshots/product-mobile.webp" alt="Product page on mobile" width="180"> |
+| Cart         | <img src="docs/screenshots/cart-desktop.webp" alt="Cart with two products" width="560">       | <img src="docs/screenshots/cart-mobile.webp" alt="Cart on mobile" width="180">            |
 
 ## Features
 
@@ -63,8 +74,10 @@ Some decisions worth explaining:
   string and writes changes back with `router.push`; nothing else stores them.
 - **Aborting stale requests.** When the user moves quickly between products, the previous request
   is aborted, so a slow old response can never replace the new product.
-- **Banners in HTML and CSS.** The hero and promo banners are built from design tokens and icons
-  instead of images: the text stays real, translatable text and no banner image is downloaded.
+- **Banners built from live data.** The hero and promo banners are HTML and CSS, not flat images:
+  the text stays real, translatable text. Each banner shows a product picked from the catalog by a
+  rule (the biggest deal, or the best rated product in a category), so its photo and price are
+  always current. Only the first slide's photo loads with high priority.
 
 ## Accessibility
 
@@ -84,17 +97,23 @@ The target is WCAG 2.1 AA:
 - Every page sets its own title and meta description; checkout, cart and the not-found page are
   marked `noindex`.
 - The product page outputs `Product` and `BreadcrumbList` structured data (JSON-LD).
+- Pages that show products start loading the catalog from a router guard, in parallel with
+  their own JS chunk instead of after it.
+- The home hero shows its holographic light as a 4 KB inlined image, so the banner is complete
+  at once; the product photo fades in when the catalog arrives, and placeholders of the same
+  height keep the layout still (CLS 0).
 
-Lighthouse on mobile (simulated slow 4G):
+Lighthouse on mobile (simulated slow 4G), three runs on the live site:
 
 | Page         | Performance | Accessibility | Best practices | SEO |
 | ------------ | ----------- | ------------- | -------------- | --- |
-| Home         | 92–93       | 100           | 100            | 100 |
-| Product list | 88–89       | 100           | 100            | 100 |
-| Product      | 88–89       | 100           | 100            | 100 |
+| Home         | 91–98       | 100           | 100            | 100 |
+| Product list | 87          | 100           | 100            | 100 |
+| Product      | 86–87       | 100           | 100            | 100 |
 
-The product list and product pages wait for the DummyJSON API before they can show the largest
-image, which is what keeps them just under 90 in the simulation.
+The product list and product pages wait for the DummyJSON API before they can show their
+largest image, the first product photo, which keeps them just under 90 in the simulation.
+Pre-rendering those pages would remove that wait (see below).
 
 ## Getting started
 
@@ -116,3 +135,11 @@ More than 300 unit and component tests cover the pure helpers (prices, filters, 
 validation, cart rules), the stores, the composables (including timers with fake timers) and
 whole pages with a mocked API: loading, empty and error states, keyboard navigation and
 the checkout flow.
+
+## What I would add next
+
+- A real backend (for example a headless commerce API) behind the existing `services/` layer, so
+  the components would not need to change.
+- Real payments and order history, with user accounts.
+- A wishlist and side-by-side comparison of up to three products.
+- Pre-rendering of the product pages, for faster first paint and better SEO.
